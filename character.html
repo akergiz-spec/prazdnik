@@ -174,8 +174,8 @@
   const data = characters[charId];
 
   if (data) {
-    document.title = data.name + ' — Заказать на праздник в Нижнем Новгороде';
-    document.getElementById('char-name').innerText = data.name;
+    document.title = data.name + ' на праздник в Нижнем Новгороде — Заказать ростовую куклу';
+    document.getElementById('char-name').innerHTML = data.name + ' <br><span style="font-size: 0.6em; color: #64748b; display: block; margin-top: 10px;">на праздник в Нижнем Новгороде</span>';
     document.getElementById('char-desc').innerText = data.desc;
     
     const gallery = document.getElementById('char-gallery');
