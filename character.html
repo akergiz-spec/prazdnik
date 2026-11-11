@@ -64,13 +64,9 @@
   h1 { color: var(--primary); font-size: 42px; margin: 0 0 15px 0; line-height: 1.15; font-weight: 900; }
   .description { color: var(--text-muted); font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
   
-  .gallery { 
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; 
-  }
-  .gallery video, .gallery img { 
-    width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-  }
-  .gallery-item-full { grid-column: 1 / -1; aspect-ratio: 16 / 9 !important; }
+  
+  
+  
 
   .btn-call { 
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -103,8 +99,8 @@
     h1 { font-size: 26px !important; margin-bottom: 10px !important; }
     .description { font-size: 14px !important; line-height: 1.4 !important; margin-bottom: 20px !important; }
     
-    .gallery { gap: 10px !important; margin-bottom: 20px !important; }
-    .gallery video, .gallery img { border-radius: 15px !important; }
+    
+    
 
     /* ЖЕСТКО ФИКСИМ КНОПКУ */
     .btn-call { 
@@ -116,6 +112,39 @@
       box-sizing: border-box !important;
       white-space: normal !important; 
       word-break: break-word !important;
+    }
+  }
+
+  /* Красивая сетка для фото */
+  .gallery { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* На ПК 3 колонки */
+    gap: 15px; 
+    margin-bottom: 30px; 
+  }
+  
+  .gallery img, .gallery video { 
+    width: 100%; 
+    aspect-ratio: 1 / 1; /* Делаем все фото квадратными */
+    object-fit: cover; /* Обрезаем края, чтобы не было искажений */
+    border-radius: 16px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery img:hover, .gallery video:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(11, 111, 164, 0.2);
+  }
+
+  /* На мобильных делаем 2 колонки */
+  @media (max-width: 600px) {
+    .gallery { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 10px; 
+    }
+    .gallery img, .gallery video {
+      border-radius: 12px;
     }
   }
 </style>
@@ -196,7 +225,7 @@
         el.src = item.src;
         el.alt = data.name;
       }
-      if (index === 0) el.classList.add('gallery-item-full');
+      
       gallery.appendChild(el);
     });
   } else {
