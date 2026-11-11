@@ -147,6 +147,35 @@
       border-radius: 12px;
     }
   }
+
+  /* Стили для полноэкранного просмотра фото */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95%; max-height: 95%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 20px;
+    color: white; font-size: 40px; cursor: pointer;
+    font-weight: bold; line-height: 1;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .gallery img { cursor: pointer; } /* Курсор-указатель на фото */
 </style>
 </head>
 <body>
@@ -174,6 +203,7 @@
       name: 'Белый медведь',
       desc: 'Огромный, мягкий и невероятно обнимательный белый медведь! Он обожает танцевать, играть с детьми и делать потрясающие фото. Идеальный герой для дня рождения, Нового года или корпоратива.',
       media: [
+        { type: 'video', src: 'bear_short.mp4' },
         { type: 'img', src: 'Мишка/IMG_3043.JPG' },
         { type: 'img', src: 'Мишка/IMG_3044.JPG' },
         { type: 'img', src: 'Мишка/IMG_3045.JPG' },
@@ -224,6 +254,7 @@
         el = document.createElement('img');
         el.src = item.src;
         el.alt = data.name;
+        el.onclick = () => openLightbox(item.src); // Открываем при клике
       }
       
       gallery.appendChild(el);
@@ -232,7 +263,26 @@
     document.getElementById('char-name').innerText = 'Персонаж не найден';
     document.getElementById('char-desc').innerText = 'Вернитесь на главную страницу и выберите героя.';
   }
+
+  // Логика лайтбокса
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+  }
+
+  // Закрытие по клику на фон
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
 </script>
 
+<div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><img id="lightbox-img" src="" alt=""></div>
 </body>
 </html>
