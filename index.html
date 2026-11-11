@@ -249,6 +249,18 @@
     .feature-card h4 { font-size: 14px; margin-bottom: 5px; }
     .feature-card p { font-size: 11px; line-height: 1.4; }
   }
+
+  /* Анимация появления */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, visibility;
+  }
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 </style>
 </head>
 <body>
@@ -272,8 +284,8 @@
   </div>
 
   <!-- ПЕРСОНАЖИ -->
-  <h2 class="section-title" id="characters">Наши персонажи</h2>
-  <p class="section-subtitle">Выберите героя, и мы устроим незабываемое шоу</p>
+  <h2 class="section-title fade-in-section" id="characters">Наши персонажи</h2>
+  <p class="section-subtitle fade-in-section">Выберите героя, и мы устроим незабываемое шоу</p>
   
   <div class="characters">
     <a href="character.html?id=bear" class="card">
@@ -311,24 +323,24 @@
   </div>
 
   <!-- ПРЕИМУЩЕСТВА -->
-  <h2 class="section-title" id="features">Почему выбирают нас</h2>
+  <h2 class="section-title fade-in-section" id="features">Почему выбирают нас</h2>
   <div class="features-grid">
-    <div class="feature-card">
+    <div class="feature-card fade-in-section">
       <span class="feature-icon">🚗</span>
       <h4>Выезд по НН</h4>
       <p>Приедем в любой район города и области без наценок за дорогу</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card fade-in-section">
       <span class="feature-icon">😊</span>
       <h4>Живые эмоции</h4>
       <p>Наши актеры умеют работать с детьми и взрослыми, создавая праздник</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card fade-in-section">
       <span class="feature-icon">🛡️</span>
       <h4>Безопасно</h4>
       <p>Костюмы из гипоаллергенных материалов, отличный обзор для актера</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card fade-in-section">
       <span class="feature-icon">📸</span>
       <h4>Фото и видео</h4>
       <p>Сделаем крутые снимки на ваш телефон или камеру на память</p>
@@ -340,5 +352,21 @@
   © 2026 ПраздникНН. Нижний Новгород. Все права защищены.
 </footer>
 
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>
 </body>
 </html>
