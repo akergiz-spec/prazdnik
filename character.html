@@ -57,41 +57,80 @@
   .description { color: var(--text-muted); font-size: 19px; margin-bottom: 40px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; font-weight: 500; }
   
   
-  /* Идеальная герметичная сетка */
-  .gallery { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); /* На ПК делаем 2 крупные колонки */
-    gap: 15px; 
-    margin-bottom: 35px; 
-  }
   
-  .gallery-item {
-    width: 100%; 
-    aspect-ratio: 1 / 1; /* Строго квадратные ячейки */
-    border-radius: 20px; 
-    overflow: hidden; /* Обрезаем все, что вылезает */
-    box-shadow: 0 8px 25px rgba(11, 111, 164, 0.1); 
+
+  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
+  
+  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
+  .gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+  }
+
+  /* Главное видео */
+  .main-media {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Широкий формат для видео */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
+    background-color: #e2e8f0;
     position: relative;
+  }
+
+  .main-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Сетка для фото под видео */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
+    gap: 15px;
+  }
+
+  .photo-item {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Квадратные фото */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
     background-color: #e2e8f0;
   }
 
-  .gallery-item video, 
-  .gallery-item img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* Идеально заполняет квадрат без искажений */
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
-    cursor: pointer;
   }
 
-  /* Легкий зум внутри ячейки при наведении (без выпуклостей карточки) */
-  .gallery-item:hover video, 
-  .gallery-item:hover img {
-    transform: scale(1.05);
+  .photo-item:hover img {
+    transform: scale(1.08); /* Легкий зум при наведении */
   }
 
-  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    .main-media {
+      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
+      border-radius: 16px;
+    }
+    .photos-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
+      gap: 10px;
+    }
+    .photo-item {
+      border-radius: 12px;
+    }
+  }
+
   @media (max-width: 600px) {
     .gallery { 
       grid-template-columns: repeat(2, 1fr); 
@@ -122,47 +161,157 @@
   .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 60px; cursor: pointer; font-weight: bold; line-height: 1; }
   @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
+  
+  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
+  .gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+  }
+
+  /* Главное видео */
+  .main-media {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Широкий формат для видео */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
+    background-color: #e2e8f0;
+    position: relative;
+  }
+
+  .main-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Сетка для фото под видео */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
+    gap: 15px;
+  }
+
+  .photo-item {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Квадратные фото */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+    background-color: #e2e8f0;
+  }
+
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-item:hover img {
+    transform: scale(1.08); /* Легкий зум при наведении */
+  }
+
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    .main-media {
+      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
+      border-radius: 16px;
+    }
+    .photos-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
+      gap: 10px;
+    }
+    .photo-item {
+      border-radius: 12px;
+    }
+  }
+
   @media (max-width: 600px) {
     .container { padding: 20px 10px; }
     .hero { padding: 30px 15px; border-radius: 30px; margin-bottom: 25px; }
     h1 { font-size: 28px; }
     .description { font-size: 15px; margin-bottom: 25px; }
     
-  /* Идеальная герметичная сетка */
-  .gallery { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); /* На ПК делаем 2 крупные колонки */
-    gap: 15px; 
-    margin-bottom: 35px; 
-  }
   
-  .gallery-item {
-    width: 100%; 
-    aspect-ratio: 1 / 1; /* Строго квадратные ячейки */
-    border-radius: 20px; 
-    overflow: hidden; /* Обрезаем все, что вылезает */
-    box-shadow: 0 8px 25px rgba(11, 111, 164, 0.1); 
+
+  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
+  
+  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
+  .gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+  }
+
+  /* Главное видео */
+  .main-media {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Широкий формат для видео */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
+    background-color: #e2e8f0;
     position: relative;
+  }
+
+  .main-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Сетка для фото под видео */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
+    gap: 15px;
+  }
+
+  .photo-item {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Квадратные фото */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
     background-color: #e2e8f0;
   }
 
-  .gallery-item video, 
-  .gallery-item img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* Идеально заполняет квадрат без искажений */
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
-    cursor: pointer;
   }
 
-  /* Легкий зум внутри ячейки при наведении (без выпуклостей карточки) */
-  .gallery-item:hover video, 
-  .gallery-item:hover img {
-    transform: scale(1.05);
+  .photo-item:hover img {
+    transform: scale(1.08); /* Легкий зум при наведении */
   }
 
-  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    .main-media {
+      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
+      border-radius: 16px;
+    }
+    .photos-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
+      gap: 10px;
+    }
+    .photo-item {
+      border-radius: 12px;
+    }
+  }
+
   @media (max-width: 600px) {
     .gallery { 
       grid-template-columns: repeat(2, 1fr); 
@@ -192,7 +341,10 @@
   <div class="hero">
     <h1 id="char-name">Загрузка...</h1>
     <p class="description" id="char-desc">Пожалуйста, подождите...</p>
-    <div class="gallery" id="char-gallery"></div>
+    <div class="gallery-wrapper">
+    <div class="main-media" id="main-media-container"></div>
+    <div class="photos-grid" id="photos-container"></div>
+  </div>
     <a href="tel:+79085997498" class="btn-call">📞 Заказать этого персонажа</a>
   </div>
 </div>
@@ -256,7 +408,10 @@
     document.getElementById('char-name').innerHTML = data.name + ' <br><span style="font-size: 0.5em; color: #64748b; display: block; margin-top: 10px; font-weight: 600;">на праздник в Нижнем Новгороде</span>';
     document.getElementById('char-desc').innerText = data.desc;
     
-    const gallery = document.getElementById('char-gallery');
+    const mainMediaContainer = document.getElementById('main-media-container');
+    const photosContainer = document.getElementById('photos-container');
+    let isFirstItem = true;
+
     data.media.forEach((item) => {
       let mediaElement;
       if (item.type === 'video') {
@@ -273,12 +428,17 @@
         mediaElement.onclick = function() { openLightbox(item.src); };
       }
       
-      // Создаем контейнер для герметичности
-      const wrapper = document.createElement('div');
-      wrapper.className = 'gallery-item';
-      wrapper.appendChild(mediaElement);
-      
-      gallery.appendChild(wrapper);
+      // Если это первый элемент (видео) — суем его в главный блок
+      if (isFirstItem) {
+        mainMediaContainer.appendChild(mediaElement);
+        isFirstItem = false;
+      } else {
+        // Остальные элементы (фото) — в сетку
+        const photoWrapper = document.createElement('div');
+        photoWrapper.className = 'photo-item';
+        photoWrapper.appendChild(mediaElement);
+        photosContainer.appendChild(photoWrapper);
+      }
     });
   } else {
     document.getElementById('char-name').innerText = 'Персонаж не найден';
