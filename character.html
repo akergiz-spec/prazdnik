@@ -23,14 +23,15 @@
   }
 
   body { 
-    overflow-x: hidden;
     font-family: 'Montserrat', sans-serif; 
     margin: 0; padding: 0; 
-    background: linear-gradient(-45deg, #e0f2fe, #bae6fd, #f0f9ff, #e0f2fe);
-    background-size: 400% 400%;
-    animation: bgAnimation 20s ease infinite;
+    background-color: #f0f7fb;
+    background-image: radial-gradient(#d0e8f7 2px, transparent 2px), radial-gradient(#d0e8f7 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
     color: var(--text-main); 
     text-align: center; 
+    overflow-x: hidden;
   }
 
   header { 
@@ -64,9 +65,28 @@
   h1 { color: var(--primary); font-size: 42px; margin: 0 0 15px 0; line-height: 1.15; font-weight: 900; }
   .description { color: var(--text-muted); font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
   
+  /* Сетка галереи */
+  .gallery { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    margin-bottom: 30px; 
+  }
   
-  
-  
+  .gallery img, .gallery video { 
+    width: 100%; 
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; 
+    border-radius: 16px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .gallery img:hover, .gallery video:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(11, 111, 164, 0.2);
+  }
 
   .btn-call { 
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -78,86 +98,15 @@
   }
   .btn-call:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 40px rgba(255, 94, 0, 0.5); }
 
-  
-
-  @media (max-width: 600px) {
-    body { overflow-x: hidden !important; }
-    .container { padding: 15px 10px !important; width: 100% !important; box-sizing: border-box !important; }
-    
-    header { padding: 15px 10px !important; }
-    .logo { font-size: 18px !important; }
-    .back-btn { font-size: 13px !important; }
-
-    .hero { 
-      padding: 25px 15px !important; 
-      border-radius: 20px !important; 
-      margin-bottom: 20px !important; 
-      width: 100% !important; 
-      box-sizing: border-box !important; 
-    }
-    
-    h1 { font-size: 26px !important; margin-bottom: 10px !important; }
-    .description { font-size: 14px !important; line-height: 1.4 !important; margin-bottom: 20px !important; }
-    
-    
-    
-
-    /* ЖЕСТКО ФИКСИМ КНОПКУ */
-    .btn-call { 
-      display: flex !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 16px 10px !important; 
-      font-size: 15px !important; 
-      box-sizing: border-box !important;
-      white-space: normal !important; 
-      word-break: break-word !important;
-    }
-  }
-
-  /* Красивая сетка для фото */
-  .gallery { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* На ПК 3 колонки */
-    gap: 15px; 
-    margin-bottom: 30px; 
-  }
-  
-  .gallery img, .gallery video { 
-    width: 100%; 
-    aspect-ratio: 1 / 1; /* Делаем все фото квадратными */
-    object-fit: cover; /* Обрезаем края, чтобы не было искажений */
-    border-radius: 16px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .gallery img:hover, .gallery video:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(11, 111, 164, 0.2);
-  }
-
-  /* На мобильных делаем 2 колонки */
-  @media (max-width: 600px) {
-    .gallery { 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 10px; 
-    }
-    .gallery img, .gallery video {
-      border-radius: 12px;
-    }
-  }
-
-  /* Стили для полноэкранного просмотра фото */
+  /* Стили для лайтбокса (увеличение фото) */
   .lightbox {
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
   }
   .lightbox.active { display: flex; }
   .lightbox img {
@@ -168,14 +117,26 @@
   }
   .lightbox-close {
     position: absolute; top: 20px; right: 20px;
-    color: white; font-size: 40px; cursor: pointer;
+    color: white; font-size: 50px; cursor: pointer;
     font-weight: bold; line-height: 1;
   }
   @keyframes zoomIn {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
-  .gallery img { cursor: pointer; } /* Курсор-указатель на фото */
+
+  @media (max-width: 600px) {
+    .container { padding: 15px 10px; }
+    .hero { padding: 25px 15px; border-radius: 20px; margin-bottom: 20px; }
+    h1 { font-size: 26px; }
+    .description { font-size: 14px; margin-bottom: 20px; }
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery img, .gallery video { border-radius: 12px; }
+    .btn-call { font-size: 16px; padding: 16px 15px; max-width: 100%; }
+    .back-btn { font-size: 13px; }
+    .logo { font-size: 18px; }
+    header { padding: 15px 10px; }
+  }
 </style>
 </head>
 <body>
@@ -197,7 +158,14 @@
   </div>
 </div>
 
+<!-- Само окно для увеличенного фото -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
+  // База данных персонажей
   const characters = {
     'bear': {
       name: 'Белый медведь',
@@ -231,6 +199,24 @@
     }
   };
 
+  // Логика лайтбокса (глобальные функции)
+  function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  // Закрытие по клику на фон
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  // Загрузка контента
   const urlParams = new URLSearchParams(window.location.search);
   const charId = urlParams.get('id') || 'bear';
   const data = characters[charId];
@@ -241,7 +227,7 @@
     document.getElementById('char-desc').innerText = data.desc;
     
     const gallery = document.getElementById('char-gallery');
-    data.media.forEach((item, index) => {
+    data.media.forEach((item) => {
       let el;
       if (item.type === 'video') {
         el = document.createElement('video');
@@ -254,35 +240,16 @@
         el = document.createElement('img');
         el.src = item.src;
         el.alt = data.name;
-        el.onclick = () => openLightbox(item.src); // Открываем при клике
+        // При клике на фото вызываем функцию увеличения
+        el.onclick = function() { openLightbox(item.src); };
       }
-      
       gallery.appendChild(el);
     });
   } else {
     document.getElementById('char-name').innerText = 'Персонаж не найден';
     document.getElementById('char-desc').innerText = 'Вернитесь на главную страницу и выберите героя.';
   }
-
-  // Логика лайтбокса
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-
-  function openLightbox(src) {
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-  }
-
-  // Закрытие по клику на фон
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
 </script>
 
-<div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><img id="lightbox-img" src="" alt=""></div>
 </body>
 </html>
