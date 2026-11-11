@@ -10,6 +10,7 @@
   
   :root {
     --primary: #0b6fa4;
+    --primary-dark: #084e75;
     --accent: #ff7a1a;
     --accent-gradient: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%);
     --bg-light: #f0f7fb;
@@ -26,18 +27,16 @@
   * { box-sizing: border-box; }
 
   body { 
-    overflow-x: hidden; 
     font-family: 'Montserrat', sans-serif; 
     margin: 0; padding: 0; 
     background-color: #f0f7fb;
     background-image: radial-gradient(#d0e8f7 2px, transparent 2px), radial-gradient(#d0e8f7 2px, transparent 2px);
     background-size: 40px 40px;
     background-position: 0 0, 20px 20px;
-    background-size: 400% 400%;
-    animation: bgAnimation 20s ease infinite;
     color: var(--text-main); 
     text-align: center; 
     min-height: 100vh;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
   
@@ -83,7 +82,6 @@
   }
 
   h1 { color: var(--primary); font-size: 52px; margin: 0 0 20px 0; line-height: 1.1; font-weight: 900; position: relative; z-index: 1; letter-spacing: -1px; }
-  h1 span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .hero-subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 35px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
   
   .phone-number { 
@@ -92,19 +90,13 @@
   }
   .phone-number:hover { color: var(--accent); transform: scale(1.02); }
   
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.4); }
-    70% { box-shadow: 0 0 0 25px rgba(255, 122, 26, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0); }
-  }
-
   .btn-call { 
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     width: 100%; max-width: 400px; padding: 22px 30px; border-radius: 50px; 
     font-size: 20px; font-weight: 900; text-decoration: none; 
     background: linear-gradient(180deg, #ff9d4d 0%, #f97316 100%); 
     color: white; 
-    border-bottom: 5px solid #c2410c; /* 3D-подложка */
+    border-bottom: 5px solid #c2410c;
     transition: all 0.2s ease;
     position: relative; z-index: 1; text-transform: uppercase; letter-spacing: 1px;
     box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
@@ -149,19 +141,29 @@
     border-color: rgba(255, 122, 26, 0.3); 
   }
   
-  .card-video-wrapper { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  .card-video-wrapper { 
+    width: 100%; aspect-ratio: 1 / 1; border-radius: 20px; 
+    overflow: hidden; margin-bottom: 15px; position: relative;
+    background-color: #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
   .card video, .emoji-container { 
-    width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;
+    width: 100%; height: 100%; object-fit: cover; display: block;
     transition: transform 0.5s ease;
   }
+  
   .card:hover video { transform: scale(1.08); }
-  .emoji-container { background: #f0f7fb; display: flex; align-items: center; justify-content: center; font-size: 70px; }
   
   .emoji-container { 
-    display: flex; align-items: center; justify-content: center; font-size: 70px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 70px; background: #f0f7fb;
   }
 
-  .card-content { padding: 0 5px; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-start; }
+  .card-content { 
+    padding: 0 5px; display: flex; flex-direction: column; 
+    flex-grow: 1; justify-content: flex-start; width: 100%;
+  }
+  
   .card h3 { margin: 0 0 8px 0; color: var(--primary); font-size: 20px; font-weight: 800; }
   .card p { color: var(--text-muted); margin: 0; font-size: 13px; line-height: 1.4; }
   
@@ -212,45 +214,7 @@
 
   footer { margin-top: 60px; padding: 40px 20px; color: var(--text-muted); font-size: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-  /* ПЛАНШЕТЫ И НОУТБУКИ */
-  @media (max-width: 1024px) {
-    .characters, .features-grid { grid-template-columns: repeat(2, 1fr); }
-    h1 { font-size: 40px; }
-    .container { padding: 40px 20px; }
-  }
-
-  /* ТЕЛЕФОНЫ */
-  @media (max-width: 600px) {
-    /* Прячем меню на телефоне, чтобы оно не ломало шапку */
-    .nav-links { display: none !important; }
-    header { justify-content: center !important; padding: 15px !important; }
-    
-    .container { padding: 20px 15px; overflow-x: hidden; }
-    .hero { padding: 35px 20px; border-radius: 25px; margin-bottom: 40px; }
-    h1 { font-size: 28px; margin-bottom: 15px; }
-    .hero-subtitle { font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
-    
-    .phone-number { font-size: 26px; white-space: nowrap; letter-spacing: -0.5px; margin: 20px 0; }
-    .btn-call { font-size: 16px; padding: 16px 20px; border-radius: 30px; letter-spacing: 0.5px; animation: none; }
-    
-    .section-title { font-size: 24px; margin-bottom: 10px; }
-    .section-subtitle { font-size: 14px; margin-bottom: 25px; }
-    
-    /* На телефоне карточки в 2 колонки и меньше отступы */
-    .characters, .features-grid { gap: 12px; margin-bottom: 40px; }
-    
-    .card { padding: 10px; border-radius: 20px; }
-    .card video, .emoji-container { border-radius: 14px; margin-bottom: 10px; }
-    .card h3 { font-size: 15px; }
-    .card p { font-size: 11px; }
-    
-    .feature-card { padding: 20px 10px; border-radius: 20px; }
-    .feature-icon { width: 50px; height: 50px; font-size: 24px; margin-bottom: 12px; }
-    .feature-card h4 { font-size: 14px; margin-bottom: 5px; }
-    .feature-card p { font-size: 11px; line-height: 1.4; }
-  }
-
-  /* Анимация появления */
+  /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
   .fade-in-section {
     opacity: 0;
     transform: translateY(30px);
@@ -260,6 +224,55 @@
   .fade-in-section.is-visible {
     opacity: 1;
     transform: none;
+  }
+
+  /* ПЛАНШЕТЫ */
+  @media (max-width: 1024px) {
+    .characters, .features-grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 40px; }
+    .container { padding: 40px 20px; }
+  }
+
+  /* ТЕЛЕФОНЫ (Идеальная выдержка) */
+  @media (max-width: 600px) {
+    /* Прячем меню на телефоне, чтобы не ломало шапку */
+    .nav-links { display: none !important; }
+    header { justify-content: center !important; padding: 15px !important; }
+    
+    .container { padding: 20px 10px; }
+    .hero { padding: 30px 15px; border-radius: 25px; margin-bottom: 40px; }
+    
+    h1 { font-size: 28px; margin-bottom: 12px; line-height: 1.2; }
+    .hero-subtitle { font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+    
+    .phone-number { font-size: 26px; white-space: nowrap; letter-spacing: -0.5px; margin: 20px 0; }
+    
+    /* Кнопка на всю ширину экрана для солидности */
+    .btn-call { font-size: 16px; padding: 16px 20px; max-width: 100%; width: 100%; border-radius: 30px; letter-spacing: 0.5px; }
+    
+    .section-title { font-size: 24px; margin-bottom: 8px; }
+    .section-subtitle { font-size: 14px; margin-bottom: 25px; }
+    
+    /* Жесткая сетка 2 колонки */
+    .characters, .features-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 10px; /* Уменьшаем зазор, чтобы влезло больше */
+      margin-bottom: 40px; 
+    }
+    
+    /* Идеально ровные карточки */
+    .card { padding: 10px; border-radius: 20px; display: flex; flex-direction: column; }
+    .card-video-wrapper { border-radius: 14px; margin-bottom: 10px; }
+    .card h3 { font-size: 14px; line-height: 1.2; margin-bottom: 4px; }
+    .card p { font-size: 10px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    
+    /* Центрируем текст в карточках преимуществ, чтобы было ровно */
+    .feature-card { padding: 15px 8px; border-radius: 20px; }
+    .feature-icon { width: 45px; height: 45px; font-size: 22px; margin-bottom: 10px; }
+    .feature-card h4 { font-size: 13px; margin-bottom: 4px; }
+    .feature-card p { font-size: 10px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    
+    .badge { font-size: 10px; padding: 4px 35px; right: -30px; top: 15px; }
   }
 </style>
 </head>
@@ -276,7 +289,7 @@
 
 <div class="container">
   <!-- ГЛАВНЫЙ БЛОК -->
-  <div class="hero">
+  <div class="hero fade-in-section">
     <h1>Подарите незабываемый праздник!</h1>
     <p class="hero-subtitle">Огромный белый медведь, забавная панда или трендовая капибара придут в гости на ваш праздник! Живые эмоции, веселые игры, объятия и море крутых фото на память. Приедем в любой район Нижнего Новгорода.</p>
     <a href="tel:+79085997498" class="phone-number">8 (908) 599-74-98</a>
@@ -288,7 +301,7 @@
   <p class="section-subtitle fade-in-section">Выберите героя, и мы устроим незабываемое шоу</p>
   
   <div class="characters">
-    <a href="character.html?id=bear" class="card">
+    <a href="character.html?id=bear" class="card fade-in-section">
       <div class="badge">ХИТ</div>
       <div class="card-video-wrapper"><video src="bear_short.mp4?v=5" autoplay loop muted playsinline></video></div>
       <div class="card-content">
@@ -297,7 +310,7 @@
       </div>
     </a>
     
-    <a href="character.html?id=panda" class="card">
+    <a href="character.html?id=panda" class="card fade-in-section">
       <div class="card-video-wrapper"><video src="panda_short.mp4?v=5" autoplay loop muted playsinline></video></div>
       <div class="card-content">
         <h3>Панда</h3>
@@ -305,7 +318,7 @@
       </div>
     </a>
     
-    <a href="character.html?id=kapibara" class="card">
+    <a href="character.html?id=kapibara" class="card fade-in-section">
       <div class="card-video-wrapper"><video src="kapibara_short.mp4?v=5" autoplay loop muted playsinline></video></div>
       <div class="card-content">
         <h3>Капибара</h3>
@@ -313,7 +326,7 @@
       </div>
     </a>
     
-    <a href="character.html?id=other" class="card">
+    <a href="character.html?id=other" class="card fade-in-section">
       <div class="card-video-wrapper"><div class="emoji-container">🎭</div></div>
       <div class="card-content">
         <h3>Другие куклы</h3>
@@ -352,7 +365,6 @@
   © 2026 ПраздникНН. Нижний Новгород. Все права защищены.
 </footer>
 
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const observer = new IntersectionObserver((entries) => {
@@ -368,5 +380,6 @@
     });
   });
 </script>
+
 </body>
 </html>
