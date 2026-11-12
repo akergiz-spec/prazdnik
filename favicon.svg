@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eaf4fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c3ddf0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Фон -->
+  <rect width="100" height="100" rx="20" fill="url(#bgGrad)"/>
+  
+  <!-- Уши -->
+  <circle cx="25" cy="30" r="12" fill="#0b6fa4"/>
+  <circle cx="75" cy="30" r="12" fill="#0b6fa4"/>
+  
+  <!-- Голова -->
+  <circle cx="50" cy="55" r="30" fill="#0b6fa4"/>
+  
+  <!-- Мордочка -->
+  <ellipse cx="50" cy="65" rx="16" ry="12" fill="#ffffff"/>
+  
+  <!-- Нос -->
+  <ellipse cx="50" cy="60" rx="6" ry="4" fill="#ff7a1a"/>
+  
+  <!-- Глаза -->
+  <circle cx="38" cy="50" r="3" fill="#1a202c"/>
+  <circle cx="62" cy="50" r="3" fill="#1a202c"/>
+  
+  <!-- Улыбка -->
+  <path d="M 42 68 Q 50 73 58 68" stroke="#1a202c" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
