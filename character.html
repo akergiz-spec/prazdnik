@@ -141,10 +141,10 @@
     .lb-prev { left: 10px; } .lb-next { right: 10px; }
   }
 
+  
   /* Стили галереи */
   .main-media {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Широкий формат для видео/главной картинки */
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
@@ -152,15 +152,33 @@
     position: relative;
     margin-bottom: 20px;
   }
+  
+  /* Для видео и фото звезд (16:9) */
+  .main-media.video-mode { aspect-ratio: 16 / 9; }
+  .main-media.photo-mode { aspect-ratio: 4 / 3; } /* Для звезд чуть выше */
+
   .main-media video, .main-media img {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
+  /* Эффект Ken Burns для звезд */
+  .ken-burns {
+    animation: kenBurns 12s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+
+  /* Сетка фото 2x2 для кукол */
   .photos-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 фото в ряд на ПК */
+    grid-template-columns: repeat(2, 1fr); /* Всегда 2 колонки */
     gap: 15px;
     margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .photo-item {
     width: 100%;
@@ -178,10 +196,11 @@
   .photo-item:hover img { transform: scale(1.08); }
 
   @media (max-width: 600px) {
-    .main-media { aspect-ratio: 4 / 3; border-radius: 14px; margin-bottom: 15px; }
-    .photos-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* 2 фото в ряд на телефоне */
+    .main-media { border-radius: 14px; margin-bottom: 15px; }
+    .photos-grid { gap: 10px; } 
     .photo-item { border-radius: 12px; }
   }
+
 </style>
 </head>
 <body>
@@ -314,6 +333,13 @@
       }
       
       if (isFirstItem) {
+        // Если это звезда (только одна картинка), добавляем класс для анимации
+        if (id === 'artur' || id === 'stas' || id === 'sergey') {
+           mainMediaContainer.classList.add('photo-mode');
+           mediaElement.classList.add('ken-burns');
+        } else {
+           mainMediaContainer.classList.add('video-mode');
+        }
         mainMediaContainer.appendChild(mediaElement);
         isFirstItem = false;
       } else {
