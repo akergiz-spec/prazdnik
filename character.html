@@ -241,6 +241,19 @@
   @media (max-width: 600px) {
     .nav-arrow { padding: 10px 15px; font-size: 13px; }
   }
+
+  @media (max-width: 600px) {
+    .nav-arrows { gap: 10px; margin-top: 20px; }
+    .nav-arrow { 
+      padding: 10px 15px; 
+      font-size: 12px; 
+      min-width: 100px;
+      border-radius: 20px;
+      flex: 1;
+    }
+    .nav-arrow.arrow-prev { justify-content: center; }
+    .nav-arrow.arrow-next { justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -330,7 +343,7 @@
       name: 'Стас Михайлов',
       price: 'от 5 000 ₽',
       desc: 'Для тех, кто ценит душевную лирику и романтику. Он точно знает, что «Всё для тебя» в этот вечер, и подарит дамам настоящие эмоции. Прекрасный сюрприз для женщин на юбилее или свадьбе, который заставит сердца биться чаще.',
-      media: [{ type: 'img', src: 'стас.JPG' }]
+      media: [{ type: 'img', src: 'стаст.JPG' }]
     },
     'sergey': {
       name: 'Сергей Жуков',

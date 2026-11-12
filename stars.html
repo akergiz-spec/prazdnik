@@ -151,6 +151,33 @@
   .star-card p {
     flex-grow: 1; /* Описание занимает всё свободное место, прижимая цену вниз */
   }
+
+  .btn-back-animals {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    padding: 15px 30px;
+    background: white;
+    border: 2px solid rgba(11, 111, 164, 0.1);
+    border-radius: 30px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  .btn-back-animals:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(11, 111, 164, 0.15);
+    background: #f0f7fb;
+  }
+  @media (max-width: 600px) {
+    .btn-back-animals { width: 100%; padding: 12px 20px; font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -183,6 +210,9 @@
         <p>Ностальгия 90-х, «Руки вверх»</p>
         <div class="card-price">от 5 000 ₽</div></div>
       </a>
+    </div>
+    <div style="text-align: center;">
+      <a href="index.html#characters" class="btn-back-animals">← Вернуться к животным</a>
     </div>
   </div>
 </div>
