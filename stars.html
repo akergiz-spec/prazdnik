@@ -118,14 +118,20 @@
   }
 
   .card-price {
-    display: inline-block;
+    display: block;
     margin-top: 8px;
-    font-size: 16px;
-    font-weight: 900;
-    color: var(--accent);
-    background: rgba(255, 122, 26, 0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #0b6fa4; /* Синий цвет, как заголовки */
+  }
+
+  @media (max-width: 600px) {
+    .card-price {
+      font-size: 11px !important;
+      margin-top: 4px !important;
+    }
+    .star-card h3 { margin-bottom: 2px !important; }
+    .star-card p { margin-bottom: 2px !important; font-size: 9px !important; }
   }
 </style>
 </head>
