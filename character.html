@@ -61,33 +61,7 @@
   .description { color: var(--text-muted); font-size: 19px; margin-bottom: 40px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; font-weight: 500; }
   
   /* НАВИГАЦИЯ МЕЖДУ ПЕРСОНАЖАМИ */
-  .nav-arrows {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-    gap: 15px;
-  }
-  .nav-arrow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: #fff;
-    border: 2px solid rgba(11, 111, 164, 0.1);
-    border-radius: 30px;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-  }
-  .nav-arrow:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(11, 111, 164, 0.1);
-  }
+  
 
   .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
   .gallery img, .gallery video { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; }
@@ -202,42 +176,6 @@
   }
 
 
-  /* Стили для красивых кнопок навигации */
-  .nav-arrows {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  .nav-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    background: white;
-    border: 2px solid rgba(11, 111, 164, 0.1);
-    border-radius: 30px;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    flex: 1;
-    justify-content: center;
-    min-width: 140px;
-  }
-  .nav-arrow:hover {
-    border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(11, 111, 164, 0.15);
-    background: #f0f7fb;
-  }
-  .nav-arrow.arrow-prev { justify-content: flex-start; }
-  .nav-arrow.arrow-next { justify-content: flex-end; }
-  
   @media (max-width: 600px) {
     .nav-arrow { padding: 10px 15px; font-size: 13px; }
   }
@@ -250,6 +188,57 @@
       min-width: 100px;
       border-radius: 20px;
       flex: 1;
+    }
+    
+  }
+
+  /* Идеальные стрелки навигации */
+  .nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .nav-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 15px;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    flex: 1; /* Кнопки растягиваются поровну */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .nav-arrow:hover {
+    border-color: var(--primary);
+    background: #f0f7fb;
+    transform: translateY(-2px);
+  }
+
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    .nav-arrows {
+      flex-direction: column; /* На телефоне кнопки встанут друг под другом */
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .nav-arrow {
+      width: 100%;
+      padding: 14px 10px;
+      font-size: 14px;
     }
     .nav-arrow.arrow-prev { justify-content: center; }
     .nav-arrow.arrow-next { justify-content: center; }
