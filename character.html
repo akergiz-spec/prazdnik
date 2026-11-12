@@ -145,12 +145,24 @@
   
 
   .btn-call { 
-    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-    width: 100%; max-width: 450px; padding: 24px 30px; border-radius: 60px; 
-    font-size: 20px; font-weight: 900; text-decoration: none; 
-    background: linear-gradient(180deg, #ff9d4d 0%, #f97316 100%); 
-    color: white; border-bottom: 6px solid #c2410c; transition: all 0.2s ease;
-    box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; max-width: 400px; padding: 18px 30px; border-radius: 50px; 
+    font-size: 18px; font-weight: 800; text-decoration: none; 
+    background: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%); 
+    color: white; border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+  }
+  
+  .btn-call:hover { 
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
+    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
+  }
+  
+  .btn-call:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
   }
   .btn-call:hover { background: linear-gradient(180deg, #ffa85c 0%, #ea580c 100%); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.5); }
   .btn-call:active { border-bottom: 0px solid #c2410c; transform: translateY(3px); box-shadow: 0 5px 10px rgba(249, 115, 22, 0.2); }
@@ -323,7 +335,26 @@
   }
 
     
-    .btn-call { font-size: 17px; padding: 18px 15px; max-width: 100%; }
+    .btn-call { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; max-width: 400px; padding: 18px 30px; border-radius: 50px; 
+    font-size: 18px; font-weight: 800; text-decoration: none; 
+    background: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%); 
+    color: white; border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+  }
+  
+  .btn-call:hover { 
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
+    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
+  }
+  
+  .btn-call:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
+  }
     .back-btn { font-size: 13px; }
     .logo { font-size: 20px; }
     header { padding: 15px 10px; }
