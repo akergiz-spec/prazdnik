@@ -201,6 +201,46 @@
     .photo-item { border-radius: 12px; }
   }
 
+
+  /* Стили для красивых кнопок навигации */
+  .nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .nav-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: white;
+    border: 2px solid rgba(11, 111, 164, 0.1);
+    border-radius: 30px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+  }
+  .nav-arrow:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(11, 111, 164, 0.15);
+    background: #f0f7fb;
+  }
+  .nav-arrow.arrow-prev { justify-content: flex-start; }
+  .nav-arrow.arrow-next { justify-content: flex-end; }
+  
+  @media (max-width: 600px) {
+    .nav-arrow { padding: 10px 15px; font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -229,8 +269,8 @@
 
     <!-- НАВИГАЦИЯ ВНИЗУ -->
     <div class="nav-arrows">
-      <a href="#" class="nav-arrow" id="prev-btn">← Предыдущий</a>
-      <a href="#" class="nav-arrow" id="next-btn">Следующий →</a>
+      <a href="#" class="nav-arrow arrow-prev" id="prev-btn">← Назад</a>
+      <a href="#" class="nav-arrow arrow-next" id="next-btn">Вперед →</a>
     </div>
   </div>
 </div>
@@ -351,11 +391,42 @@
     });
 
     // Настройка стрелок навигации
-    const index = charIds.indexOf(id);
-    const prevId = charIds[(index - 1 + charIds.length) % charIds.length];
-    const nextId = charIds[(index + 1) % charIds.length];
-    document.getElementById('prev-btn').href = 'character.html?id=' + prevId;
-    document.getElementById('next-btn').href = 'character.html?id=' + nextId;
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    // Логика для кукол
+    if (id === 'bear') {
+        prevBtn.style.display = 'none';
+        nextBtn.href = 'character.html?id=panda';
+        nextBtn.innerHTML = 'К Панде →';
+    } else if (id === 'panda') {
+        prevBtn.href = 'character.html?id=bear';
+        prevBtn.innerHTML = '← К Медведю';
+        nextBtn.href = 'character.html?id=kapibara';
+        nextBtn.innerHTML = 'К Капибаре →';
+    } else if (id === 'kapibara') {
+        prevBtn.href = 'character.html?id=panda';
+        prevBtn.innerHTML = '← К Панде';
+        nextBtn.href = 'stars.html';
+        nextBtn.innerHTML = 'К Звездам →';
+    } 
+    // Логика для звезд
+    else if (id === 'artur') {
+        prevBtn.href = 'stars.html';
+        prevBtn.innerHTML = '← К Звездам';
+        nextBtn.href = 'character.html?id=stas';
+        nextBtn.innerHTML = 'К Стасу →';
+    } else if (id === 'stas') {
+        prevBtn.href = 'character.html?id=artur';
+        prevBtn.innerHTML = '← К Артуру';
+        nextBtn.href = 'character.html?id=sergey';
+        nextBtn.innerHTML = 'К Сергею →';
+    } else if (id === 'sergey') {
+        prevBtn.href = 'character.html?id=stas';
+        prevBtn.innerHTML = '← К Стасу';
+        nextBtn.href = 'stars.html';
+        nextBtn.innerHTML = 'К Звездам →';
+    }
   }
 
   // ЛАЙТБОКС
