@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Заказать персонажа на праздник в Нижнем Новгороде</title>
+<title>Копытыч — Заказать персонажа в Нижнем Новгороде</title>
+<meta name="yandex-verification" content="a27f4167e7a23814" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
   
@@ -40,7 +40,9 @@
     display: flex; justify-content: space-between; align-items: center;
   }
   
-  .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+  .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+  .logo img { width: 32px; height: 32px; }
+  
   .back-btn { color: var(--primary); text-decoration: none; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
   .back-btn:hover { color: var(--accent); transform: translateX(-5px); }
 
@@ -58,401 +60,92 @@
   h1 { color: var(--primary); font-size: 50px; margin: 0 0 20px 0; line-height: 1.1; font-weight: 900; letter-spacing: -1.5px; }
   .description { color: var(--text-muted); font-size: 19px; margin-bottom: 40px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; font-weight: 500; }
   
-  
-  
-
-  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
-  
-  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
-  .gallery-wrapper {
+  /* НАВИГАЦИЯ МЕЖДУ ПЕРСОНАЖАМИ */
+  .nav-arrows {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 35px;
-  }
-
-  /* Главное видео */
-  .main-media {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Широкий формат для видео */
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
-    background-color: #e2e8f0;
-    position: relative;
-  }
-
-  .main-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Сетка для фото под видео */
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
     gap: 15px;
   }
-
-  .photo-item {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* Квадратные фото */
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    cursor: pointer;
-    background-color: #e2e8f0;
+  .nav-arrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #fff;
+    border: 2px solid rgba(11, 111, 164, 0.1);
+    border-radius: 30px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  }
+  .nav-arrow:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11, 111, 164, 0.1);
   }
 
-  .photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .photo-item:hover img {
-    transform: scale(1.08); /* Легкий зум при наведении */
-  }
-
-  /* Адаптив для телефонов */
-  @media (max-width: 600px) {
-    .main-media {
-      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
-      border-radius: 16px;
-    }
-    .photos-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
-      gap: 10px;
-    }
-    .photo-item {
-      border-radius: 12px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .gallery { 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 10px; 
-    }
-    .gallery-item {
-      border-radius: 14px;
-    }
-  }
-
-  
-  
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+  .gallery img, .gallery video { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; }
+  .gallery img:hover, .gallery video:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(11, 111, 164, 0.2); }
 
   .btn-call { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%; 
-    max-width: 100%; 
-    padding: 16px 20px; 
-    border-radius: 12px; /* Более современные скругления */
-    font-size: 16px; 
-    font-weight: 700; 
-    text-decoration: none; 
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%; max-width: 450px; padding: 20px 30px; border-radius: 12px; 
+    font-size: 18px; font-weight: 800; text-decoration: none; 
     background: var(--accent-gradient); 
-    color: white; 
-    border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
-    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
-    text-align: center;
-    margin: 0 auto; /* Центрирование */
-    position: relative;
-    z-index: 10;
-}
-  
-  .btn-call:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
+    color: white; border: none; transition: all 0.2s ease;
+    box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+    margin: 0 auto;
+    box-sizing: border-box;
   }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
-  }
-  
-  .btn-call:hover { 
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
-    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
-  }
-  .btn-call:hover { background: linear-gradient(180deg, #ffa85c 0%, #ea580c 100%); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.5); }
-  .btn-call:active { border-bottom: 0px solid #c2410c; transform: translateY(3px); box-shadow: 0 5px 10px rgba(249, 115, 22, 0.2); }
+  .btn-call:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5); }
+  .btn-call:active { transform: translateY(1px); box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3); }
 
+  /* ЛАЙТБОКС (Увеличение фото) */
   .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
   .lightbox.active { display: flex; }
-  .lightbox img { max-width: 95%; max-height: 95%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
+  .lightbox img { max-width: 95%; max-height: 85%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
   .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 60px; cursor: pointer; font-weight: bold; line-height: 1; }
-  @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
   
-  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
-  .gallery-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 35px;
+  /* СТРЕЛКИ В ЛАЙТБОКСЕ */
+  .lb-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); color: white; border: none;
+    width: 60px; height: 60px; border-radius: 50%; font-size: 30px;
+    cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;
   }
+  .lb-nav:hover { background: rgba(255,255,255,0.3); }
+  .lb-prev { left: 20px; }
+  .lb-next { right: 20px; }
 
-  /* Главное видео */
-  .main-media {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Широкий формат для видео */
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
-    background-color: #e2e8f0;
-    position: relative;
-  }
-
-  .main-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Сетка для фото под видео */
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
-    gap: 15px;
-  }
-
-  .photo-item {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* Квадратные фото */
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    cursor: pointer;
-    background-color: #e2e8f0;
-  }
-
-  .photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .photo-item:hover img {
-    transform: scale(1.08); /* Легкий зум при наведении */
-  }
-
-  /* Адаптив для телефонов */
-  @media (max-width: 600px) {
-    .main-media {
-      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
-      border-radius: 16px;
-    }
-    .photos-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
-      gap: 10px;
-    }
-    .photo-item {
-      border-radius: 12px;
-    }
-  }
+  @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
   @media (max-width: 600px) {
     .container { padding: 20px 10px; }
     .hero { padding: 30px 15px; border-radius: 30px; margin-bottom: 25px; }
     h1 { font-size: 28px; }
     .description { font-size: 15px; margin-bottom: 25px; }
-    
-  
-
-  /* На мобильных делаем 2 колонки, чтобы было аккуратно */
-  
-  /* --- НОВАЯ ГАЛЕРЕЯ С ГЛАВНЫМ ВИДЕО --- */
-  .gallery-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 35px;
-  }
-
-  /* Главное видео */
-  .main-media {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Широкий формат для видео */
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
-    background-color: #e2e8f0;
-    position: relative;
-  }
-
-  .main-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Сетка для фото под видео */
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 фото в ряд на ПК */
-    gap: 15px;
-  }
-
-  .photo-item {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* Квадратные фото */
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    cursor: pointer;
-    background-color: #e2e8f0;
-  }
-
-  .photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .photo-item:hover img {
-    transform: scale(1.08); /* Легкий зум при наведении */
-  }
-
-  /* Адаптив для телефонов */
-  @media (max-width: 600px) {
-    .main-media {
-      aspect-ratio: 4 / 3; /* На телефоне видео чуть повыше */
-      border-radius: 16px;
-    }
-    .photos-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 фото в ряд на телефоне */
-      gap: 10px;
-    }
-    .photo-item {
-      border-radius: 12px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .gallery { 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 10px; 
-    }
-    .gallery-item {
-      border-radius: 14px;
-    }
-  }
-
-    
-    .btn-call { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%; 
-    max-width: 100%; 
-    padding: 16px 20px; 
-    border-radius: 12px; /* Более современные скругления */
-    font-size: 16px; 
-    font-weight: 700; 
-    text-decoration: none; 
-    background: var(--accent-gradient); 
-    color: white; 
-    border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
-    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
-    text-align: center;
-    margin: 0 auto; /* Центрирование */
-    position: relative;
-    z-index: 10;
-}
-  
-  .btn-call:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
-  }
-  
-  .btn-call:hover { 
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
-    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
-  }
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery img, .gallery video { border-radius: 14px; }
+    .btn-call { font-size: 16px; padding: 16px 20px; width: 100%; }
     .back-btn { font-size: 13px; }
-    .logo { font-size: 20px; }
+    .logo { font-size: 18px; }
     header { padding: 15px 10px; }
-  }
-
-  /* Эффект живой фотографии (Ken Burns) */
-  @keyframes kenBurns {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-  .main-media img {
-    width: 100%; height: 100%; object-fit: cover;
-    animation: kenBurns 10s ease-in-out infinite alternate;
-  }
-
-  /* Стили для цены */
-  .price-tag {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 30px 0 20px;
-    gap: 5px;
-  }
-  .price-label {
-    font-size: 14px;
-    color: #64748b;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .price-value {
-    font-size: 36px;
-    color: #0b6fa4;
-    font-weight: 900;
-    letter-spacing: -1px;
-  }
-  
-  @media (max-width: 600px) {
-    .price-tag { margin: 20px 0 15px; }
-    .price-label { font-size: 12px; }
-    .price-value { font-size: 28px; }
+    .nav-arrow { padding: 8px 12px; font-size: 12px; }
+    .lb-nav { width: 40px; height: 40px; font-size: 20px; }
+    .lb-prev { left: 10px; } .lb-next { right: 10px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo"><img src="favicon.svg" alt="Копытыч" style="width: 32px; height: 32px; margin-right: 8px;"> Копытыч</a>
+  <a href="index.html" class="logo"><img src="favicon.svg" alt="Копытыч"> Копытыч</a>
   <a href="javascript:history.back()" class="back-btn">← Назад</a>
 </header>
 
@@ -460,144 +153,106 @@
   <div class="hero">
     <h1 id="char-name">Загрузка...</h1>
     <p class="description" id="char-desc">Пожалуйста, подождите...</p>
-    <div class="gallery-wrapper">
-    <div class="main-media" id="main-media-container"></div>
-    <div class="photos-grid" id="photos-container"></div>
-  </div>
+    
+    <div class="gallery" id="char-gallery"></div>
+
     <div class="price-tag">
       <span class="price-label">Стоимость выступления:</span>
       <span class="price-value" id="char-price">от 4 500 ₽</span>
     </div>
+    
     <a href="tel:+79085997498" class="btn-call">📞 Заказать этого персонажа</a>
+
+    <!-- НАВИГАЦИЯ ВНИЗУ -->
+    <div class="nav-arrows">
+      <a href="#" class="nav-arrow" id="prev-btn">← Предыдущий</a>
+      <a href="#" class="nav-arrow" id="next-btn">Следующий →</a>
+    </div>
   </div>
 </div>
 
 <div class="lightbox" id="lightbox">
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <button class="lb-nav lb-prev" onclick="navigateLightbox(-1)">&#10094;</button>
   <img id="lightbox-img" src="" alt="">
+  <button class="lb-nav lb-next" onclick="navigateLightbox(1)">&#10095;</button>
 </div>
 
 <script>
   const characters = {
-    'bear': {
-      name: 'Белый медведь',
-      desc: 'Огромный, мягкий и невероятно обнимательный белый медведь! Он обожает танцевать, играть с детьми и делать потрясающие фото. Идеальный герой для дня рождения, Нового года или корпоратива.',
-      media: [
-        { type: 'video', src: 'bear_short.mp4' },
-        { type: 'img', src: 'Мишка/1.PNG' },
-        { type: 'img', src: 'Мишка/2.PNG' },
-        { type: 'img', src: 'Мишка/3.PNG' },
-        { type: 'img', src: 'Мишка/4.PNG' }
-      ]
-    },
-    'panda': {
-      name: 'Панда',
-      desc: 'Весёлая и неуклюжая панда — любимица всех детей! Она придумает крутые игры, потанцует под зажигательную музыку и подарит кучу объятий.',
-      media: [
-        { type: 'video', src: 'panda_short.mp4' },
-        { type: 'img', src: 'панда/IMG_3060.PNG' },
-        { type: 'img', src: 'панда/IMG_3061.PNG' },
-        { type: 'img', src: 'панда/IMG_3062.PNG' },
-        { type: 'img', src: 'панда/IMG_3063.PNG' }
-      ]
-    },
-    'kapibara': {
-      name: 'Капибара',
-      desc: 'Самый трендовый и спокойный герой! Капибара с мандаринами вызовет восторг и у детей, и у взрослых. Идеально для фотосессий и уютных праздников.',
-      media: [
-        { type: 'video', src: 'kapibara_short.mp4' },
-        { type: 'img', src: 'капибара/IMG_3051.PNG' },
-        { type: 'img', src: 'капибара/IMG_3052.PNG' },
-        { type: 'img', src: 'капибара/IMG_3057.PNG' },
-        { type: 'img', src: 'капибара/IMG_3058.PNG' }
-      ]
-    },
-    'artur': {
-      name: 'Артур Пирожков',
-      price: 'от 5 000 ₽',
-      desc: 'Если вы хотите, чтобы гости забыли про свои проблемы и пустились в пляс — вам точно к нему! Он знает, как «Зацепить» каждого, и не боится стать «Алкоголичкой» на вашем празднике. Танцы до утра, юмор и море позитива — гарантированы. Идеально для корпоративов и свадеб.',
-      media: [{ type: 'img', src: 'артур.JPG' }]
-    },
-    'stas': {
-      name: 'Стас Михайлов',
-      price: 'от 5 000 ₽',
-      desc: 'Для тех, кто ценит душевную лирику и романтику. Он точно знает, что «Всё для тебя» в этот вечер, и подарит дамам настоящие эмоции. Прекрасный сюрприз для женщин на юбилее или свадьбе, который заставит сердца биться чаще.',
-      media: [{ type: 'img', src: 'стаст.JPG' }]
-    },
-    'sergey': {
-      name: 'Сергей Жуков',
-      price: 'от 5 000 ₽',
-      desc: 'Ностальгия по 90-м и легендарные хиты, под которые невозможно усидеть на месте! Когда он выходит на сцену, даже самая скромная «Крошка моя» начинает танцевать. Взорвет любой танцпол и заставит всех петь хором на вашем мероприятии.',
-      media: [{ type: 'img', src: 'сергей.JPG' }]
-    },
-    'other': {
-      name: 'Другие персонажи',
-      desc: 'У нас есть не только мишки и капибары! Зайка, Лиса, Единорог и другие герои готовы приехать на ваш праздник.',
-      media: []
-    }
+    'bear': { name: 'Белый медведь', price: 'от 4 500 ₽', desc: '...', media: [{ type: 'video', src: 'bear_short.mp4' }, { type: 'img', src: 'Мишка/1.PNG' }, { type: 'img', src: 'Мишка/2.PNG' }, { type: 'img', src: 'Мишка/3.PNG' }, { type: 'img', src: 'Мишка/4.PNG' }] },
+    'panda': { name: 'Панда', price: 'от 4 500 ₽', desc: '...', media: [{ type: 'video', src: 'panda_short.mp4' }, { type: 'img', src: 'панда/IMG_3060.PNG' }, { type: 'img', src: 'панда/IMG_3061.PNG' }, { type: 'img', src: 'панда/IMG_3062.PNG' }, { type: 'img', src: 'панда/IMG_3063.PNG' }] },
+    'kapibara': { name: 'Капибара', price: 'от 4 500 ₽', desc: '...', media: [{ type: 'video', src: 'kapibara_short.mp4' }, { type: 'img', src: 'капибара/IMG_3051.PNG' }, { type: 'img', src: 'капибара/IMG_3052.PNG' }, { type: 'img', src: 'капибара/IMG_3057.PNG' }, { type: 'img', src: 'капибара/IMG_3058.PNG' }] },
+    'artur': { name: 'Артур Пирожков', price: 'от 5 000 ₽', desc: '...', media: [{ type: 'img', src: 'артур.JPG' }] },
+    'stas': { name: 'Стас Михайлов', price: 'от 5 000 ₽', desc: '...', media: [{ type: 'img', src: 'стас.JPG' }] },
+    'sergey': { name: 'Сергей Жуков', price: 'от 5 000 ₽', desc: '...', media: [{ type: 'img', src: 'сергей.JPG' }] }
   };
 
-  function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-  }
+  const charIds = ['bear', 'panda', 'kapibara', 'artur', 'stas', 'sergey'];
+  let currentCharId = 'bear';
 
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-  }
+  function loadCharacter(id) {
+    currentCharId = id;
+    const data = characters[id];
+    if (!data) return;
 
-  document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
-  });
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const charId = urlParams.get('id') || 'bear';
-  const data = characters[charId];
-
-  if (data) {
-    document.title = data.name + ' на праздник в Нижнем Новгороде — Заказать ростовую куклу';
+    document.title = data.name + ' — Заказать в Нижнем Новгороде | Копытыч';
     document.getElementById('char-name').innerHTML = data.name + ' <br><span style="font-size: 0.5em; color: #64748b; display: block; margin-top: 10px; font-weight: 600;">на праздник в Нижнем Новгороде</span>';
     document.getElementById('char-desc').innerText = data.desc;
-    if(data.price) { document.getElementById('char-price').innerText = data.price; }
+    document.getElementById('char-price').innerText = data.price;
     
-    const mainMediaContainer = document.getElementById('main-media-container');
-    const photosContainer = document.getElementById('photos-container');
-    let isFirstItem = true;
-
+    const gallery = document.getElementById('char-gallery');
+    gallery.innerHTML = '';
+    
     data.media.forEach((item) => {
-      let mediaElement;
+      let el;
       if (item.type === 'video') {
-        mediaElement = document.createElement('video');
-        mediaElement.src = item.src;
-        mediaElement.autoplay = true; 
-        mediaElement.loop = true; 
-        mediaElement.muted = true; 
-        mediaElement.playsInline = true;
+        el = document.createElement('video');
+        el.src = item.src;
+        el.autoplay = true; el.loop = true; el.muted = true; el.playsInline = true;
       } else {
-        mediaElement = document.createElement('img');
-        mediaElement.src = item.src;
-        mediaElement.alt = data.name;
-        mediaElement.onclick = function() { openLightbox(item.src); };
+        el = document.createElement('img');
+        el.src = item.src;
+        el.alt = data.name;
+        el.onclick = () => openLightbox(item.src);
       }
-      
-      // Если это первый элемент (видео) — суем его в главный блок
-      if (isFirstItem) {
-        mainMediaContainer.appendChild(mediaElement);
-        isFirstItem = false;
-      } else {
-        // Остальные элементы (фото) — в сетку
-        const photoWrapper = document.createElement('div');
-        photoWrapper.className = 'photo-item';
-        photoWrapper.appendChild(mediaElement);
-        photosContainer.appendChild(photoWrapper);
-      }
+      gallery.appendChild(el);
     });
-  } else {
-    document.getElementById('char-name').innerText = 'Персонаж не найден';
-    document.getElementById('char-desc').innerText = 'Вернитесь на главную страницу и выберите героя.';
+
+    // Настройка стрелок навигации
+    const index = charIds.indexOf(id);
+    const prevId = charIds[(index - 1 + charIds.length) % charIds.length];
+    const nextId = charIds[(index + 1) % charIds.length];
+    document.getElementById('prev-btn').href = 'character.html?id=' + prevId;
+    document.getElementById('next-btn').href = 'character.html?id=' + nextId;
   }
+
+  // ЛАЙТБОКС
+  let currentMediaIndex = 0;
+  function openLightbox(src) {
+    const data = characters[currentCharId];
+    const imageMedia = data.media.filter(m => m.type === 'img');
+    currentMediaIndex = imageMedia.findIndex(m => m.src === src);
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+  
+  function navigateLightbox(dir) {
+    const data = characters[currentCharId];
+    const imageMedia = data.media.filter(m => m.type === 'img');
+    if (imageMedia.length <= 1) return;
+    currentMediaIndex = (currentMediaIndex + dir + imageMedia.length) % imageMedia.length;
+    document.getElementById('lightbox-img').src = imageMedia[currentMediaIndex].src;
+  }
+
+  document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+
+  // Загрузка при старте
+  const urlParams = new URLSearchParams(window.location.search);
+  const startId = urlParams.get('id') || 'bear';
+  if (characters[startId]) loadCharacter(startId);
 </script>
 
 </body>
