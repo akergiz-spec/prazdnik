@@ -77,14 +77,34 @@
   .phone-number:hover { color: var(--accent); transform: scale(1.03); }
   
   .btn-call { 
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; max-width: 400px; padding: 18px 30px; border-radius: 50px; 
-    font-size: 18px; font-weight: 800; text-decoration: none; 
-    background: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%); 
-    color: white; border: none;
-    transition: all 0.3s ease;
-    position: relative; z-index: 1; text-transform: uppercase; letter-spacing: 0.5px;
-    box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    max-width: 100%; 
+    padding: 16px 20px; 
+    border-radius: 12px; /* Более современные скругления */
+    font-size: 16px; 
+    font-weight: 700; 
+    text-decoration: none; 
+    background: var(--accent-gradient); 
+    color: white; 
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
+    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
+    text-align: center;
+    margin: 0 auto; /* Центрирование */
+  }
+  
+  .btn-call:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
+  }
+  
+  .btn-call:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
   }
   
   .btn-call:hover { 
@@ -151,14 +171,34 @@
     .hero-subtitle { font-size: 15px; margin-bottom: 30px; }
     .phone-number { font-size: 32px; margin: 20px 0; letter-spacing: -1px; }
     .btn-call { 
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; max-width: 400px; padding: 18px 30px; border-radius: 50px; 
-    font-size: 18px; font-weight: 800; text-decoration: none; 
-    background: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%); 
-    color: white; border: none;
-    transition: all 0.3s ease;
-    position: relative; z-index: 1; text-transform: uppercase; letter-spacing: 0.5px;
-    box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    max-width: 100%; 
+    padding: 16px 20px; 
+    border-radius: 12px; /* Более современные скругления */
+    font-size: 16px; 
+    font-weight: 700; 
+    text-decoration: none; 
+    background: var(--accent-gradient); 
+    color: white; 
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
+    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
+    text-align: center;
+    margin: 0 auto; /* Центрирование */
+  }
+  
+  .btn-call:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
+  }
+  
+  .btn-call:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
   }
   
   .btn-call:hover { 
