@@ -140,6 +140,48 @@
     .lb-nav { width: 40px; height: 40px; font-size: 20px; }
     .lb-prev { left: 10px; } .lb-next { right: 10px; }
   }
+
+  /* Стили галереи */
+  .main-media {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Широкий формат для видео/главной картинки */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 111, 164, 0.15);
+    background-color: #e2e8f0;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .main-media video, .main-media img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 фото в ряд на ПК */
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .photo-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+    background-color: #e2e8f0;
+  }
+  .photo-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .photo-item:hover img { transform: scale(1.08); }
+
+  @media (max-width: 600px) {
+    .main-media { aspect-ratio: 4 / 3; border-radius: 14px; margin-bottom: 15px; }
+    .photos-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* 2 фото в ряд на телефоне */
+    .photo-item { border-radius: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -154,7 +196,10 @@
     <h1 id="char-name">Загрузка...</h1>
     <p class="description" id="char-desc">Пожалуйста, подождите...</p>
     
-    <div class="gallery" id="char-gallery"></div>
+    
+    <div class="main-media" id="main-media-container"></div>
+    <div class="photos-grid" id="photos-container"></div>
+
 
     <div class="price-tag">
       <span class="price-label">Стоимость выступления:</span>
@@ -249,22 +294,34 @@
     document.getElementById('char-desc').innerText = data.desc;
     document.getElementById('char-price').innerText = data.price;
     
-    const gallery = document.getElementById('char-gallery');
-    gallery.innerHTML = '';
+    const mainMediaContainer = document.getElementById('main-media-container');
+    const photosContainer = document.getElementById('photos-container');
+    mainMediaContainer.innerHTML = '';
+    photosContainer.innerHTML = '';
+    let isFirstItem = true;
     
     data.media.forEach((item) => {
-      let el;
+      let mediaElement;
       if (item.type === 'video') {
-        el = document.createElement('video');
-        el.src = item.src;
-        el.autoplay = true; el.loop = true; el.muted = true; el.playsInline = true;
+        mediaElement = document.createElement('video');
+        mediaElement.src = item.src;
+        mediaElement.autoplay = true; mediaElement.loop = true; mediaElement.muted = true; mediaElement.playsInline = true;
       } else {
-        el = document.createElement('img');
-        el.src = item.src;
-        el.alt = data.name;
-        el.onclick = () => openLightbox(item.src);
+        mediaElement = document.createElement('img');
+        mediaElement.src = item.src;
+        mediaElement.alt = data.name;
+        mediaElement.onclick = () => openLightbox(item.src);
       }
-      gallery.appendChild(el);
+      
+      if (isFirstItem) {
+        mainMediaContainer.appendChild(mediaElement);
+        isFirstItem = false;
+      } else {
+        const photoWrapper = document.createElement('div');
+        photoWrapper.className = 'photo-item';
+        photoWrapper.appendChild(mediaElement);
+        photosContainer.appendChild(photoWrapper);
+      }
     });
 
     // Настройка стрелок навигации
