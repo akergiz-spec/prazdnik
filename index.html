@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<link rel="canonical" href="https://prazdnik-nn52.ru/" />
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-
-<meta name="yandex-verification" content="a27f4167e7a23814" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Копытыч — Заказать ростовую куклу на праздник в Нижнем Новгороде</title>
 <meta name="description" content="Заказ ростовых кукол на праздник в Нижнем Новгороде. Белый медведь, панда, капибара. Быстрый выезд, фото на память, безопасно для детей.">
-
+<meta name="yandex-verification" content="a27f4167e7a23814" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://prazdnik-nn52.ru/" />
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
   
   :root {
     --primary: #0b6fa4;
-    --primary-dark: #084e75;
     --accent: #ff7a1a;
     --accent-gradient: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%);
     --bg-light: #f0f7fb;
@@ -39,20 +36,13 @@
     -webkit-font-smoothing: antialiased;
   }
   
-  header { 
-    background: rgba(255, 255, 255, 0.7); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    color: var(--primary); 
-    padding: 18px 5%; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    position: sticky; top: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  
+  .snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; overflow: hidden; display: none; }
+  .snowflake { position: absolute; top: -10px; color: #a0c4e8; font-size: 1.5em; opacity: 0.8; animation: fall linear infinite; }
+  @keyframes fall { to { transform: translateY(110vh); } }
+
+  header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: var(--primary); padding: 18px 5%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
-  
+  .logo img { width: 32px; height: 32px; }
   .nav-links { display: flex; gap: 30px; font-weight: 700; font-size: 15px; }
   .nav-links a { color: var(--primary); text-decoration: none; transition: all 0.3s; position: relative; }
   .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: 0.3s; }
@@ -60,71 +50,18 @@
   .nav-links a:hover::after { width: 100%; }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 50px 5%; }
-  
-  .hero { 
-    background: rgba(255, 255, 255, 0.95); 
-    padding: 80px 40px; 
-    border-radius: 40px; 
-    box-shadow: 0 40px 100px -20px rgba(11, 111, 164, 0.25), 0 10px 30px -10px rgba(0,0,0,0.05); 
-    margin-bottom: 70px; 
-    border: 1px solid rgba(255, 255, 255, 1);
-    position: relative; overflow: hidden;
-  }
-
+  .hero { background: rgba(255, 255, 255, 0.95); padding: 80px 40px; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(11, 111, 164, 0.25), 0 10px 30px -10px rgba(0,0,0,0.05); margin-bottom: 70px; border: 1px solid rgba(255, 255, 255, 1); position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,122,26,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; }
   .hero::after { content: ''; position: absolute; bottom: -200px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(11,111,164,0.15) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; }
 
   h1 { color: var(--primary); font-size: 56px; margin: 0 0 25px 0; line-height: 1.1; font-weight: 900; position: relative; z-index: 1; letter-spacing: -1.5px; }
   .hero-subtitle { color: var(--text-muted); font-size: 19px; margin-bottom: 40px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; font-weight: 500; }
-  
   .phone-number { font-size: 52px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin: 30px 0 40px; letter-spacing: -1.5px; transition: all 0.3s ease; position: relative; z-index: 1; }
   .phone-number:hover { color: var(--accent); transform: scale(1.03); }
   
-  .btn-call { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%; 
-    max-width: 100%; 
-    padding: 16px 20px; 
-    border-radius: 12px; /* Более современные скругления */
-    font-size: 16px; 
-    font-weight: 700; 
-    text-decoration: none; 
-    background: var(--accent-gradient); 
-    color: white; 
-    border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
-    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
-    text-align: center;
-    margin: 0 auto; /* Центрирование */
-    position: relative;
-    z-index: 10;
-}
-  
-  .btn-call:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
-  }
-  
-  .btn-call:hover { 
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
-    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
-  }
-  .btn-call:hover { background: linear-gradient(180deg, #ffa85c 0%, #ea580c 100%); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.5); }
-  .btn-call:active { border-bottom: 0px solid #c2410c; transform: translateY(3px); box-shadow: 0 5px 10px rgba(249, 115, 22, 0.2); }
+  .btn-call { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 400px; padding: 18px 30px; border-radius: 12px; font-size: 18px; font-weight: 800; text-decoration: none; background: var(--accent-gradient); color: white; border: none; transition: all 0.3s ease; position: relative; z-index: 10; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3); box-sizing: border-box; margin: 0 auto; }
+  .btn-call:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5); background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%); }
+  .btn-call:active { transform: translateY(1px); box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3); }
 
   .section-title { font-size: 40px; color: var(--primary); margin: 0 0 15px 0; font-weight: 900; letter-spacing: -1px; }
   .section-subtitle { color: var(--text-muted); margin: 0 0 50px 0; font-size: 18px; font-weight: 500; }
@@ -132,25 +69,25 @@
   .characters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 80px; }
   .card { background: white; padding: 15px; border-radius: 30px; box-shadow: 0 15px 45px rgba(11, 111, 164, 0.08); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; height: 100%; border: 2px solid transparent; text-decoration: none; color: inherit; cursor: pointer; }
   .card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(11, 111, 164, 0.18); border-color: rgba(255, 122, 26, 0.4); }
-  
   .card-video-wrapper { width: 100%; aspect-ratio: 1 / 1; border-radius: 22px; overflow: hidden; margin-bottom: 18px; position: relative; background-color: #e2e8f0; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
   .card video, .emoji-container { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
   .card:hover video { transform: scale(1.1); }
   .emoji-container { display: flex; align-items: center; justify-content: center; font-size: 70px; background: #f0f7fb; }
-
   .card-content { padding: 0 5px; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-start; width: 100%; }
   .card h3 { margin: 0 0 8px 0; color: var(--primary); font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
   .card p { color: var(--text-muted); margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; }
-  
   .badge { position: absolute; top: 20px; right: -35px; background: var(--accent-gradient); color: white; padding: 8px 45px; font-size: 13px; font-weight: 900; transform: rotate(45deg); box-shadow: 0 6px 15px rgba(255, 94, 0, 0.4); letter-spacing: 1.5px; z-index: 10; }
+
+  .card.newyear-card { grid-column: 1 / -1; max-width: 320px; margin: 0 auto; border: 2px solid #e11d48; background: linear-gradient(180deg, #fff1f2 0%, #ffffff 100%); box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15); }
+  .card.newyear-card:hover { border-color: #be123c; box-shadow: 0 25px 50px rgba(225, 29, 72, 0.25); }
+  .card.newyear-card .card-video-wrapper { aspect-ratio: 4 / 5; }
+  .newyear-badge { position: absolute; top: 15px; left: -30px; background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); color: white; padding: 6px 40px; font-size: 12px; font-weight: 900; transform: rotate(-45deg); box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 10; letter-spacing: 1px; }
 
   .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 70px; }
   .feature-card { background: white; padding: 35px 25px; border-radius: 30px; box-shadow: 0 15px 40px rgba(11, 111, 164, 0.06); transition: all 0.4s ease; border: 2px solid transparent; display: flex; flex-direction: column; align-items: center; height: 100%; }
   .feature-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 25px 50px rgba(11, 111, 164, 0.12); }
-  
   .feature-icon { font-size: 40px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; width: 90px; height: 90px; background: linear-gradient(135deg, #ffffff 0%, #f0f7fb 100%); border-radius: 50%; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 12px 25px rgba(11, 111, 164, 0.08); border: 1px solid rgba(255,255,255,1); }
   .feature-card:hover .feature-icon { transform: scale(1.15) rotate(5deg); background: #ffffff; box-shadow: 0 20px 40px rgba(11, 111, 164, 0.18); border-color: var(--primary); }
-  
   .feature-card h4 { margin: 0 0 12px 0; color: var(--primary); font-size: 20px; font-weight: 800; }
   .feature-card p { margin: 0; color: var(--text-muted); font-size: 15px; line-height: 1.6; font-weight: 500; }
 
@@ -170,55 +107,13 @@
 
   @media (max-width: 600px) {
     .nav-links { display: none !important; }
-    header { justify-content: center !important; padding: 15px !important; }
+    header { flex-direction: column; gap: 10px; padding: 15px 10px !important; }
     .container { padding: 20px 10px; }
     .hero { padding: 40px 20px; border-radius: 30px; margin-bottom: 40px; }
     h1 { font-size: 30px; margin-bottom: 15px; }
     .hero-subtitle { font-size: 15px; margin-bottom: 30px; }
     .phone-number { font-size: 32px; margin: 20px 0; letter-spacing: -1px; }
-    .btn-call { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%; 
-    max-width: 100%; 
-    padding: 16px 20px; 
-    border-radius: 12px; /* Более современные скругления */
-    font-size: 16px; 
-    font-weight: 700; 
-    text-decoration: none; 
-    background: var(--accent-gradient); 
-    color: white; 
-    border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box; /* ВАЖНО: чтобы padding не увеличивал ширину */
-    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
-    text-align: center;
-    margin: 0 auto; /* Центрирование */
-    position: relative;
-    z-index: 10;
-}
-  
-  .btn-call:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 94, 0, 0.4);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(255, 94, 0, 0.2);
-  }
-  
-  .btn-call:hover { 
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
-    background: linear-gradient(135deg, #ff9d4d 0%, #f97316 100%);
-  }
-  
-  .btn-call:active {
-    transform: translateY(1px);
-    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3);
-  }
+    .btn-call { font-size: 17px; padding: 18px 20px; width: 100%; border-radius: 40px; }
     .section-title { font-size: 28px; }
     .section-subtitle { font-size: 15px; margin-bottom: 30px; }
     .characters, .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 40px; }
@@ -231,42 +126,16 @@
     .feature-card p { font-size: 12px; }
     .seo-text { padding: 25px; border-radius: 20px; font-size: 13px; }
     .badge { font-size: 11px; padding: 5px 40px; right: -30px; top: 15px; }
+    .card.newyear-card { max-width: 100%; }
+    .newyear-badge { font-size: 10px; padding: 4px 30px; top: 10px; left: -35px; }
   }
-
-  .card-price {
-    display: block;
-    margin-top: 8px;
-    font-size: 15px;
-    font-weight: 800;
-    color: #0b6fa4; /* Синий цвет, как заголовки */
-  }
-
-  @media (max-width: 600px) {
-    header { flex-direction: column; gap: 10px; padding: 15px 10px; }
-    .logo { font-size: 20px; }
-    .back-btn { font-size: 14px; }
-  }
-
-  
 </style>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114214935', 'ym');
-
-    ym(114214935, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/114214935" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 </head>
 <body>
+<div class="snow-container" id="snow-container"></div>
 
 <header>
-  <div class="logo"><img src="favicon.svg" alt="Копытыч" style="width: 32px; height: 32px; margin-right: 8px;"> Копытыч</div>
+  <div class="logo"><img src="favicon.svg" alt="Копытыч"> Копытыч</div>
   <div class="nav-links">
     <a href="#characters">Персонажи</a>
     <a href="#features">Преимущества</a>
@@ -300,19 +169,13 @@
       <div class="card-content"><h3>Капибара</h3><p>Трендовый персонаж с мандаринами</p><div class="card-price">от 4 500 ₽</div></div>
     </a>
     <a href="stars.html" class="card fade-in-section">
-      <div class="card-video-wrapper" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); display: flex; align-items: center; justify-content: center;">
-        <div class="emoji-container" style="background: transparent; font-size: 80px;">🌟</div>
-      </div>
+      <div class="card-video-wrapper" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); display: flex; align-items: center; justify-content: center;"><div class="emoji-container" style="background: transparent; font-size: 80px;">🌟</div></div>
       <div class="card-content"><h3>Звезды эстрады</h3><p>Настоящие звезды на вашем празднике</p></div>
     </a>
-
-    <!-- Карточка Деда Мороза -->
-    <a href="character.html?id=dedmoroz" class="card fade-in-section" id="ny-card" style="display: none;">
-      <div class="badge" style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);">НОВЫЙ ГОД</div>
-      <div class="card-video-wrapper" style="background: url('Новый год/дед_мороз.PNG') center/cover;">
-        <div style="width: 100%; height: 100%; background: rgba(0,0,0,0.1);"></div>
-      </div>
-      <div class="card-content"><h3>Дед Мороз</h3><p>Снегурочка, игры и хороводы</p></div>
+    <a href="character.html?id=dedmoroz" class="card newyear-card fade-in-section" id="ny-card">
+      <div class="newyear-badge">НОВЫЙ ГОД</div>
+      <div class="card-video-wrapper" style="background: url('Новый год/дед_мороз.PNG') center/cover;"><div style="width: 100%; height: 100%; background: rgba(0,0,0,0.1);"></div></div>
+      <div class="card-content"><h3 style="color: #be123c;">Дед Мороз</h3><p>Снегурочка, игры и хороводы</p><div class="card-price" style="color: #be123c;">от 6 000 ₽</div></div>
     </a>
   </div>
 
@@ -330,9 +193,7 @@
   </div>
 </div>
 
-<footer>
-  © 2026 Копытыч. Нижний Новгород. Все права защищены.
-</footer>
+<footer>© 2026 Копытыч. Нижний Новгород. Все права защищены.</footer>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -342,36 +203,27 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in-section').forEach((section) => { observer.observe(section); });
-  });
-</script>
 
-
-<script>
-  // Показываем карточку Деда Мороза только с 1 ноября по 15 января
-  document.addEventListener("DOMContentLoaded", function() {
-    const nyCard = document.getElementById('ny-card');
-    if (nyCard) {
-      const month = new Date().getMonth() + 1; // 1 = январь, 11 = ноябрь, 12 = декабрь
-      const day = new Date().getDate();
-      
-      // Если сейчас НЕ сезон (не ноябрь, не декабрь и не первая половина января) — скрываем
-      if (!(month === 11 || month === 12 || (month === 1 && day <= 15))) {
-        nyCard.style.display = 'none';
+    const month = new Date().getMonth() + 1;
+    if (month === 11 || month === 12 || month === 1) {
+      const container = document.getElementById('snow-container');
+      if (container) {
+        container.style.display = 'block';
+        for (let i = 0; i < 30; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.classList.add('snowflake');
+          snowflake.innerHTML = '❄';
+          snowflake.style.left = Math.random() * 100 + 'vw';
+          snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
+          snowflake.style.animationDelay = Math.random() * 5 + 's';
+          snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+          snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+          container.appendChild(snowflake);
+        }
       }
     }
   });
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const nyCard = document.getElementById('ny-card');
-    if (nyCard) {
-      const month = new Date().getMonth() + 1;
-      if (month === 11 || month === 12 || month === 1) {
-        nyCard.style.display = 'flex'; // Показываем карточку
-      }
-    }
-  });
-</script>
 </body>
 </html>
