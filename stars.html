@@ -11,11 +11,11 @@
   :root { --primary: #0b6fa4; --accent: #ff7a1a; --text-main: #1a202c; --text-muted: #64748b; }
   body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #eaf4fb; background-image: radial-gradient(#c3ddf0 2px, transparent 2px), radial-gradient(#c3ddf0 2px, transparent 2px); background-size: 50px 50px; background-position: 0 0, 25px 25px; color: var(--text-main); text-align: center; overflow-x: hidden; }
   
-  header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); padding: 18px 5%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
-  .logo img { width: 32px; height: 32px; }
-  .back-btn { color: var(--primary); text-decoration: none; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
-  .back-btn:hover { color: var(--accent); transform: translateX(-5px); }
+  
+  
+  
+  
+  
 
   .container { max-width: 1000px; margin: 0 auto; padding: 50px 5%; }
   .hero { background: rgba(255, 255, 255, 0.95); padding: 60px 40px; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(11, 111, 164, 0.2); margin-bottom: 50px; border: 1px solid rgba(255, 255, 255, 1); }
@@ -45,12 +45,132 @@
     .star-card p { font-size: 9px; }
     .star-image { border-radius: 10px; font-size: 40px; margin-bottom: 8px; }
     .card-price { font-size: 11px; }
-    header { flex-direction: column; gap: 10px; padding: 15px 10px; }
+    
     .btn-back-animals { padding: 12px 20px; font-size: 14px; margin-top: 20px; }
+  }
+
+  .snow-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+    display: none;
+  }
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    color: #a0c4e8;
+    font-size: 1.5em; /* Размер для ПК */
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh); }
+  }
+  
+  /* Уменьшаем снежинки на телефоне */
+  @media (max-width: 600px) {
+    .snowflake {
+      font-size: 0.8em; /* Размер для телефона (в 2 раза меньше) */
+    }
+  }
+
+  /* Стильная шапка */
+  header { 
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 5%; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+  
+  .logo { 
+    font-size: 24px; 
+    font-weight: 900; 
+    color: var(--primary); 
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease;
+  }
+  .logo:hover {
+    transform: scale(1.02);
+  }
+  .logo img { 
+    width: 36px; 
+    height: 36px; 
+    filter: drop-shadow(0 4px 6px rgba(11, 111, 164, 0.2));
+  }
+  
+  .back-btn { 
+    color: var(--primary); 
+    text-decoration: none; 
+    font-weight: 700; 
+    font-size: 14px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    transition: all 0.3s ease;
+    background: var(--bg-light);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(11, 111, 164, 0.1);
+  }
+  .back-btn:hover { 
+    color: white; 
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(11, 111, 164, 0.3);
+  }
+
+  /* Навигация в шапке (если есть) */
+  .nav-links { 
+    display: flex; 
+    gap: 30px; 
+    font-weight: 700; 
+    font-size: 15px; 
+  }
+  .nav-links a { 
+    color: var(--primary); 
+    text-decoration: none; 
+    transition: all 0.3s; 
+    position: relative; 
+  }
+  .nav-links a::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -5px; 
+    left: 0; 
+    width: 0; 
+    height: 2px; 
+    background: var(--accent); 
+    transition: 0.3s; 
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    header { padding: 12px 15px; flex-direction: row; gap: 10px; }
+    .logo { font-size: 20px; }
+    .logo img { width: 30px; height: 30px; }
+    .back-btn { font-size: 13px; padding: 8px 15px; }
+    .nav-links { display: none; }
   }
 </style>
 </head>
 <body>
+<div class="snow-container" id="snow-container"></div>
 <header>
   <a href="index.html" class="logo"><img src="favicon.svg" alt="Копытыч"> Копытыч</a>
   <a href="index.html" class="back-btn">← Назад</a>
@@ -86,5 +206,31 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const month = new Date().getMonth() + 1;
+    if (month === 11 || month === 12 || month === 1) {
+      const container = document.getElementById('snow-container');
+      if (container) {
+        container.style.display = 'block';
+        for (let i = 0; i < 30; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.classList.add('snowflake');
+          snowflake.innerHTML = '❄';
+          snowflake.style.left = Math.random() * 100 + 'vw';
+          snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
+          snowflake.style.animationDelay = Math.random() * 5 + 's';
+          
+          // Настраиваем размер: на ПК от 10 до 20px, на телефоне скрипт сам уменьшит через CSS
+          snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+          
+          snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+          container.appendChild(snowflake);
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>

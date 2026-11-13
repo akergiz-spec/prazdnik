@@ -11,11 +11,17 @@
   :root { --primary: #0b6fa4; --accent: #ff7a1a; --accent-gradient: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%); --bg-light: #f0f7fb; --text-main: #1a202c; --text-muted: #64748b; }
   body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #eaf4fb; background-image: radial-gradient(#c3ddf0 2px, transparent 2px), radial-gradient(#c3ddf0 2px, transparent 2px); background-size: 50px 50px; background-position: 0 0, 25px 25px; color: var(--text-main); text-align: center; overflow-x: hidden; }
   
-  header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); padding: 18px 5%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
-  .logo img { width: 32px; height: 32px; }
-  .back-btn { color: var(--primary); text-decoration: none; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
-  .back-btn:hover { color: var(--accent); transform: translateX(-5px); }
+  /* Снег */
+  .snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; overflow: hidden; display: none; }
+  .snowflake { position: absolute; top: -10px; color: #a0c4e8; font-size: 1.5em; opacity: 0.8; animation: fall linear infinite; }
+  @keyframes fall { to { transform: translateY(110vh); } }
+  @media (max-width: 600px) { .snowflake { font-size: 0.8em; } }
+
+  
+  
+  
+  
+  
 
   .container { max-width: 1000px; margin: 0 auto; padding: 50px 5%; }
   .hero { background: rgba(255, 255, 255, 0.95); padding: 60px 40px; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(11, 111, 164, 0.2); margin-bottom: 50px; border: 1px solid rgba(255, 255, 255, 1); }
@@ -59,9 +65,9 @@
     .photos-grid { gap: 10px; }
     .photo-item { border-radius: 12px; }
     .btn-call { font-size: 16px; padding: 16px 20px; width: 100%; }
-    header { flex-direction: column; gap: 10px; padding: 15px 10px; }
-    .logo { font-size: 20px; }
-    .back-btn { font-size: 14px; }
+    
+    
+    
     .price-value { font-size: 28px; }
     .where-we-go { gap: 8px; padding: 15px; margin: 20px 10px; border-radius: 16px; }
     .where-item { font-size: 12px; padding: 8px 12px; border-radius: 12px; }
@@ -70,12 +76,102 @@
     .nav-arrow { width: 100%; padding: 14px 10px; font-size: 14px; }
   }
 
-  #photos-container {
-    justify-content: center;
+  /* Стильная шапка */
+  header { 
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 5%; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+  
+  .logo { 
+    font-size: 24px; 
+    font-weight: 900; 
+    color: var(--primary); 
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease;
+  }
+  .logo:hover {
+    transform: scale(1.02);
+  }
+  .logo img { 
+    width: 36px; 
+    height: 36px; 
+    filter: drop-shadow(0 4px 6px rgba(11, 111, 164, 0.2));
+  }
+  
+  .back-btn { 
+    color: var(--primary); 
+    text-decoration: none; 
+    font-weight: 700; 
+    font-size: 14px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    transition: all 0.3s ease;
+    background: var(--bg-light);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(11, 111, 164, 0.1);
+  }
+  .back-btn:hover { 
+    color: white; 
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(11, 111, 164, 0.3);
+  }
+
+  /* Навигация в шапке (если есть) */
+  .nav-links { 
+    display: flex; 
+    gap: 30px; 
+    font-weight: 700; 
+    font-size: 15px; 
+  }
+  .nav-links a { 
+    color: var(--primary); 
+    text-decoration: none; 
+    transition: all 0.3s; 
+    position: relative; 
+  }
+  .nav-links a::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -5px; 
+    left: 0; 
+    width: 0; 
+    height: 2px; 
+    background: var(--accent); 
+    transition: 0.3s; 
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Адаптив для телефонов */
+  @media (max-width: 600px) {
+    header { padding: 12px 15px; flex-direction: row; gap: 10px; }
+    .logo { font-size: 20px; }
+    .logo img { width: 30px; height: 30px; }
+    .back-btn { font-size: 13px; padding: 8px 15px; }
+    .nav-links { display: none; }
   }
 </style>
 </head>
 <body>
+<div class="snow-container" id="snow-container"></div>
+
 <header>
   <a href="index.html" class="logo"><img src="favicon.svg" alt="Копытыч"> Копытыч</a>
   <a href="javascript:history.back()" class="back-btn">← Назад</a>
@@ -91,7 +187,7 @@
       <span class="price-value" id="char-price">от 4 500 ₽</span>
     </div>
     <a href="tel:+79085997498" class="btn-call">📞 Заказать этого персонажа</a>
-    <div class="where-we-go">
+    <div class="where-we-go" id="where-block">
       <div class="where-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>На дом</div>
       <div class="where-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>В офис</div>
       <div class="where-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>На корпоратив</div>
@@ -117,7 +213,7 @@
     'panda': { name: 'Панда', price: 'от 4 500 ₽', desc: 'Весёлая и неуклюжая панда — любимица всех детей! Она придумает крутые игры, потанцует под зажигательную музыку и подарит кучу объятий.', media: [{ type: 'video', src: 'panda_short.mp4' }, { type: 'img', src: 'панда/IMG_3060.PNG' }, { type: 'img', src: 'панда/IMG_3061.PNG' }, { type: 'img', src: 'панда/IMG_3062.PNG' }, { type: 'img', src: 'панда/IMG_3063.PNG' }] },
     'kapibara': { name: 'Капибара', price: 'от 4 500 ₽', desc: 'Самый трендовый и спокойный герой! Капибара с мандаринами вызовет восторг и у детей, и у взрослых. Идеально для фотосессий и уютных праздников.', media: [{ type: 'video', src: 'kapibara_short.mp4' }, { type: 'img', src: 'капибара/IMG_3051.PNG' }, { type: 'img', src: 'капибара/IMG_3052.PNG' }, { type: 'img', src: 'капибара/IMG_3057.PNG' }, { type: 'img', src: 'капибара/IMG_3058.PNG' }] },
     'artur': { name: 'Артур Пирожков', price: 'от 5 000 ₽', desc: 'Если вы хотите, чтобы гости забыли про свои проблемы и пустились в пляс — вам точно к нему! Он знает, как «Зацепить» каждого, и не боится стать «Алкоголичкой» на вашем празднике. Танцы до утра, юмор и море позитива — гарантированы. Идеально для корпоративов и свадеб.', media: [{ type: 'img', src: 'артур.JPG' }] },
-    'stas': { name: 'Стас Михайлов', price: 'от 5 000 ₽', desc: 'Для тех, кто ценит душевную лирику и романтику. Он точно знает, что «Всё для тебя» в этот вечер, и подарит дамам настоящие эмоции. Прекрасный сюрприз для женщин на юбилее или свадьбе, который заставит сердца биться чаще.', media: [{ type: 'img', src: 'стаст.JPG' }] },
+    'stas': { name: 'Стас Михайлов', price: 'от 5 000 ₽', desc: 'Для тех, кто ценит душевную лирику и романтику. Он точно знает, что «Всё для тебя» в этот вечер, и подарит дамам настоящие эмоции. Прекрасный сюрприз для женщин на юбилее или свадьбе, который заставит сердца биться чаще.', media: [{ type: 'img', src: 'стас.JPG' }] },
     'sergey': { name: 'Сергей Жуков', price: 'от 5 000 ₽', desc: 'Ностальгия по 90-м и легендарные хиты, под которые невозможно усидеть на месте! Когда он выходит на сцену, даже самая скромная «Крошка моя» начинает танцевать. Взорвет любой танцпол и заставит всех петь хором на вашем мероприятии.', media: [{ type: 'img', src: 'сергей.JPG' }] },
     'dedmoroz': { name: 'Дед Мороз и Снегурочка', price: 'от 6 000 ₽', desc: 'Настоящая новогодняя сказка для вас и ваших близких! Дед Мороз и Снегурочка придут в гости, зажгут огни на елке, проведут веселые игры и хороводы. Подарите детям веру в чудо, а взрослым — теплые эмоции. Незабываемый Новый год гарантирован!', media: [{ type: 'img', src: 'Новый год/дед_мороз.PNG' }, { type: 'img', src: 'Новый год/снегурочка.PNG' }] }
   };
@@ -160,9 +256,7 @@
            mediaElement.classList.add('ken-burns');
            mainMediaContainer.appendChild(mediaElement);
         } else if (id === 'dedmoroz') {
-           // Прячем пустой серый блок для Деда Мороза
            mainMediaContainer.style.display = 'none';
-           
            const photoWrapper = document.createElement('div');
            photoWrapper.className = 'photo-item';
            photoWrapper.appendChild(mediaElement);
@@ -179,6 +273,13 @@
         photosContainer.appendChild(photoWrapper);
       }
     });
+
+    const whereBlock = document.getElementById('where-block');
+    if (id === 'bear' || id === 'panda' || id === 'kapibara') {
+      whereBlock.style.display = 'none';
+    } else {
+      whereBlock.style.display = 'flex';
+    }
 
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -209,6 +310,26 @@
     document.getElementById('lightbox-img').src = imageMedia[currentMediaIndex].src;
   }
   document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+
+  // Снег
+  const month = new Date().getMonth() + 1;
+  if (month === 11 || month === 12 || month === 1) {
+    const container = document.getElementById('snow-container');
+    if (container) {
+      container.style.display = 'block';
+      for (let i = 0; i < 30; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.innerHTML = '❄';
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
+        snowflake.style.animationDelay = Math.random() * 5 + 's';
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        container.appendChild(snowflake);
+      }
+    }
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const startId = urlParams.get('id') || 'bear';
