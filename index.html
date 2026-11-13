@@ -305,6 +305,15 @@
       </div>
       <div class="card-content"><h3>Звезды эстрады</h3><p>Настоящие звезды на вашем празднике</p></div>
     </a>
+
+    <!-- Карточка Деда Мороза -->
+    <a href="character.html?id=dedmoroz" class="card fade-in-section" id="ny-card" style="display: none;">
+      <div class="badge" style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);">НОВЫЙ ГОД</div>
+      <div class="card-video-wrapper" style="background: url('Новый год/дед_мороз.PNG') center/cover;">
+        <div style="width: 100%; height: 100%; background: rgba(0,0,0,0.1);"></div>
+      </div>
+      <div class="card-content"><h3>Дед Мороз</h3><p>Снегурочка, игры и хороводы</p></div>
+    </a>
   </div>
 
   <h2 class="section-title fade-in-section" id="features">Почему выбирают нас</h2>
@@ -348,6 +357,18 @@
       // Если сейчас НЕ сезон (не ноябрь, не декабрь и не первая половина января) — скрываем
       if (!(month === 11 || month === 12 || (month === 1 && day <= 15))) {
         nyCard.style.display = 'none';
+      }
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const nyCard = document.getElementById('ny-card');
+    if (nyCard) {
+      const month = new Date().getMonth() + 1;
+      if (month === 11 || month === 12 || month === 1) {
+        nyCard.style.display = 'flex'; // Показываем карточку
       }
     }
   });
