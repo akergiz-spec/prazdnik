@@ -103,8 +103,15 @@
     <div id="main-media-container" class="main-media"></div>
     <div class="photos-grid" id="photos-container"></div>
     <div class="price-tag">
-      <span class="price-label">Стоимость выступления:</span>
-      <span class="price-value" id="char-price">от 4 500 ₽</span>
+      <span class="price-label" id="price-label-text">Стоимость выступления:</span>
+      <div id="standard-price" style="display: none;">
+        <span class="price-value" id="char-price">от 4 500 ₽</span>
+      </div>
+      <div id="promo-price" style="display: none; flex-direction: column; align-items: center;">
+        <span style="font-size: 18px; color: #64748b; text-decoration: line-through; margin-bottom: 5px;">7 000 ₽</span>
+        <span class="price-value" style="color: #e11d48;">от 6 000 ₽</span>
+        <span style="background: #e11d48; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; margin-top: 10px; text-transform: uppercase;">Акция до 10 декабря</span>
+      </div>
     </div>
     <a href="tel:+79085997498" class="btn-call">📞 Заказать этого персонажа</a>
     
@@ -143,7 +150,7 @@
     'artur': { name: 'Артур Пирожков', price: 'от 5 000 ₽', desc: 'Если вы хотите, чтобы гости забыли про свои проблемы и пустились в пляс — вам точно к нему! Он знает, как «Зацепить» каждого, и не боится стать «Алкоголичкой» на вашем празднике. Танцы до утра, юмор и море позитива — гарантированы. Идеально для корпоративов и свадеб.', media: [{ type: 'img', src: 'артур.JPG' }] },
     'stas': { name: 'Стас Михайлов', price: 'от 5 000 ₽', desc: 'Для тех, кто ценит душевную лирику и романтику. Он точно знает, что «Всё для тебя» в этот вечер, и подарит дамам настоящие эмоции. Прекрасный сюрприз для женщин на юбилее или свадьбе, который заставит сердца биться чаще.', media: [{ type: 'img', src: 'стаст.JPG' }] },
     'sergey': { name: 'Сергей Жуков', price: 'от 5 000 ₽', desc: 'Ностальгия по 90-м и легендарные хиты, под которые невозможно усидеть на месте! Когда он выходит на сцену, даже самая скромная «Крошка моя» начинает танцевать. Взорвет любой танцпол и заставит всех петь хором на вашем мероприятии.', media: [{ type: 'img', src: 'сергей.JPG' }] },
-    'dedmoroz': { name: 'Дед Мороз и Снегурочка', price: 'от 6 000 ₽', desc: 'Настоящая новогодняя сказка для вас и ваших близких! Дед Мороз и Снегурочка придут в гости, зажгут огни на елке, проведут веселые игры и хороводы. Подарите детям веру в чудо, а взрослым — теплые эмоции. Незабываемый Новый год гарантирован!', media: [{ type: 'img', src: 'Новый год/дед_мороз.PNG' }, { type: 'img', src: 'Новый год/снегурочка.PNG' }] }
+    'dedmoroz': { name: 'Дед Мороз и Снегурочка', price: 'от 7 000 ₽', desc: 'Настоящая новогодняя сказка для вас и ваших близких! Дед Мороз и Снегурочка придут в гости, зажгут огни на елке, проведут веселые игры и хороводы. Подарите детям веру в чудо, а взрослым — теплые эмоции. Незабываемый Новый год гарантирован!', media: [{ type: 'img', src: 'Новый год/дед_мороз.PNG' }, { type: 'img', src: 'Новый год/снегурочка.PNG' }] }
   };
 
   const charIds = ['bear', 'panda', 'kapibara', 'artur', 'stas', 'sergey', 'dedmoroz'];
@@ -157,7 +164,34 @@
     document.title = data.name + ' — Заказать в Нижнем Новгороде | Копытыч';
     document.getElementById('char-name').innerHTML = data.name + ' <br><span style="font-size: 0.5em; color: #64748b; display: block; margin-top: 10px; font-weight: 600;">на праздник в Нижнем Новгороде</span>';
     document.getElementById('char-desc').innerText = data.desc;
-    document.getElementById('char-price').innerText = data.price;
+    // Логика цены и акции
+    const standardPriceBlock = document.getElementById('standard-price');
+    const promoPriceBlock = document.getElementById('promo-price');
+    const priceLabel = document.getElementById('price-label-text');
+
+    if (id === 'dedmoroz') {
+      const now = new Date();
+      const promoEndDate = new Date('2026-12-10T23:59:59'); // Акция до 10 декабря
+
+      if (now <= promoEndDate) {
+        // Показываем акцию
+        standardPriceBlock.style.display = 'none';
+        promoPriceBlock.style.display = 'flex';
+        priceLabel.innerText = 'Специальное предложение:';
+      } else {
+        // Показываем обычную цену
+        standardPriceBlock.style.display = 'block';
+        promoPriceBlock.style.display = 'none';
+        priceLabel.innerText = 'Стоимость выступления:';
+        document.getElementById('char-price').innerText = data.price;
+      }
+    } else {
+      // Для всех остальных персонажей
+      standardPriceBlock.style.display = 'block';
+      promoPriceBlock.style.display = 'none';
+      priceLabel.innerText = 'Стоимость выступления:';
+      document.getElementById('char-price').innerText = data.price;
+    }
     
     const mainMediaContainer = document.getElementById('main-media-container');
     const photosContainer = document.getElementById('photos-container');

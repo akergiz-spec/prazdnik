@@ -172,6 +172,38 @@
   }
 
   
+
+  .discount-badge {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: linear-gradient(135deg, #ff8c2b 0%, #ff5e00 100%);
+    color: white;
+    padding: 6px 40px;
+    font-size: 12px;
+    font-weight: 900;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 10px rgba(255, 94, 0, 0.3);
+    z-index: 10;
+    letter-spacing: 1px;
+  }
+  @media (max-width: 600px) {
+    .discount-badge {
+      font-size: 10px;
+      padding: 4px 30px;
+      top: 10px;
+      right: -35px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    
+  }
+
+  @media (max-width: 600px) {
+    
+    #ny-card:hover { transform: translateY(-5px); }
+  }
 </style>
 </head>
 <body>
@@ -194,10 +226,23 @@
     <a href="tel:+79085997498" class="btn-call">📞 Позвонить и заказать</a>
   </div>
 
-  <h2 class="section-title fade-in-section" id="characters">Наши персонажи</h2>
+  <h2 class="section-title fade-in-section" id="characters">Новогодние герои и не только</h2>
   <p class="section-subtitle fade-in-section">Выберите героя, и мы устроим незабываемое шоу</p>
   
   <div class="characters">
+    <a href="character.html?id=dedmoroz" class="card newyear-card fade-in-section">
+      <div class="newyear-badge">НОВЫЙ ГОД</div>
+      <div class="discount-badge">СКИДКА</div>
+      <div class="card-video-wrapper" style="background: url('Новый год/дед_мороз.PNG') center/cover;"><div style="width: 100%; height: 100%; background: rgba(0,0,0,0.1);"></div></div>
+      <div class="card-content">
+        <h3 style="color: #be123c;">Дед Мороз</h3>
+        <p>Снегурочка, игры и хороводы</p>
+        <div class="card-price" style="color: #be123c; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+          <span style="font-size: 12px; color: #64748b; text-decoration: line-through;">7 000 ₽</span>
+          <span>от 6 000 ₽</span>
+        </div>
+      </div>
+    </a>
     <a href="character.html?id=bear" class="card fade-in-section">
       <div class="badge">ХИТ</div>
       <div class="card-video-wrapper"><video src="bear_short.mp4?v=5" autoplay loop muted playsinline></video></div>
@@ -215,11 +260,7 @@
       <div class="card-video-wrapper" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); display: flex; align-items: center; justify-content: center;"><div class="emoji-container" style="background: transparent; font-size: 80px;">🌟</div></div>
       <div class="card-content"><h3>Звезды эстрады</h3><p>Настоящие звезды на вашем празднике</p></div>
     </a>
-    <a href="character.html?id=dedmoroz" class="card newyear-card fade-in-section" id="ny-card">
-      <div class="newyear-badge">НОВЫЙ ГОД</div>
-      <div class="card-video-wrapper" style="background: url('Новый год/дед_мороз.PNG') center/cover;"><div style="width: 100%; height: 100%; background: rgba(0,0,0,0.1);"></div></div>
-      <div class="card-content"><h3 style="color: #be123c;">Дед Мороз</h3><p>Снегурочка, игры и хороводы</p><div class="card-price" style="color: #be123c;">от 6 000 ₽</div></div>
-    </a>
+    
   </div>
 
   <h2 class="section-title fade-in-section" id="features">Почему выбирают нас</h2>
@@ -351,6 +392,23 @@
   "image": "https://prazdnik-nn52.ru/favicon.svg",
   "url": "https://prazdnik-nn52.ru/"
 }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const month = new Date().getMonth() + 1; // 1 = январь, 11 = ноябрь, 12 = декабрь
+    const titleElement = document.getElementById('characters');
+    
+    if (titleElement) {
+      // Если сейчас ноябрь, декабрь или январь — показываем новогодний заголовок
+      if (month === 11 || month === 12 || month === 1) {
+        titleElement.innerText = 'Новогодние герои и не только';
+      } else {
+        // В остальное время года — обычный заголовок
+        titleElement.innerText = 'Наши персонажи';
+      }
+    }
+  });
 </script>
 </body>
 </html>
